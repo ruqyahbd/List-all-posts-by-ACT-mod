@@ -17,11 +17,11 @@ function hierarchy_indexes($atts){
 
 ?>
 <form name="form1" method="post" action="<?=$PHP_SELF?>"  >
-        <div align="center" class="styled-select">Visualizza per: 
+        <div align="center" class="styled-select"><?php _e('Group by:', 'list-all-posts-by-ACT'); ?> 
           <select name="order"  id="order"  onChange=" ;this.form.submit();">
-            <option value="author" <?php if ($_POST['order']  == "author") echo "selected"; ?>>Autore</option>
-            <option value="title" <?php if ($_POST['order']  == "title") echo "selected"; ?>>Titolo</option>
-            <option value="category" <?php if ($_POST['order']  == "category") echo "selected"; ?>>Sezione</option>
+            <option value="author" <?php if ($_POST['order']  == "author") echo "selected"; ?>><?php _e('Author', 'list-all-posts-by-ACT'); ?> </option>
+            <option value="title" <?php if ($_POST['order']  == "title") echo "selected"; ?>><?php _e('Title', 'list-all-posts-by-ACT'); ?> </option>
+            <option value="category" <?php if ($_POST['order']  == "category") echo "selected"; ?>><?php _e('Category', 'list-all-posts-by-ACT'); ?> </option>
           </select>
         </div>
     </form>
