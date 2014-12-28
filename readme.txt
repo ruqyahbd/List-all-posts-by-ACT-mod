@@ -35,19 +35,19 @@ CAT1
 			...
 			
 
-Default usage:
+**Default usage:**
 
 [ACT-list]
 
 	* all categories and subcategories post, excluding administrator's posts, grouped by (upon selection) Category/Author/Title
 	
-Exclude categories:
+**Exclude categories:**
 
 [ACT-list exclude="cat1-slug, cat2-slug, ..."]
 
 	* listed categories will be excluded. Categories must be listed with their slugnames.
 	
-Include admin's posts:
+**Include admin's posts:**
 
 [ACT-list admin=1]
 
@@ -66,4 +66,5 @@ n.n.
 
 == Changelog ==
 
-v. 0.5  - first issue
+= 0.5 =
+* First working version
