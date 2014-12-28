@@ -27,14 +27,14 @@ function hierarchy_indexes($atts){
     </form>
 <?php
 
-$exclude_list=null;
+$exclude_list = null;
 if ($atts["exclude"]) :
 	$exclude_list = explode(",", preg_replace('/\s+/', '', $atts["exclude"]));
 endif;
 
-$add_admin=false;
+$add_admin = false;
 if ($atts["admin"]) :
-	$add_admin=true;
+	$add_admin = true;
 endif;
 
 	if ($_POST['order']  == "author") {
@@ -50,6 +50,7 @@ endif;
 }
 	
 function bycategory($exclude_list, $add_admin) {
+
 	/* Start browsing categories*/
 	foreach( get_categories('hide_empty=0') as $cat ) :
 		$args = array(
@@ -142,10 +143,10 @@ function byauthor($exclude_list, $add_admin) {
 // Array of WP_User objects.
 foreach ( $autori as $user ):
 	$args= array(
-    		'author'        =>  $user->ID, 
-			'posts_per_page' =>  -1,
-    		'orderby'       =>  'title',
-    		'order'         =>  'ASC' 
+    		'author'        	=>  $user->ID, 
+			'posts_per_page' 	=>  -1,
+    		'orderby'       	=>  'title',
+    		'order'         	=>  'ASC' 
    		 );
 	
 	$author_posts=  get_posts( $args ); 
