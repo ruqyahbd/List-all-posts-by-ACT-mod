@@ -56,7 +56,7 @@ Include admin's posts:
 
 == Installation ==
 
-1. Upload `list-all-posts-by-ACT.php` to the `/wp-content/plugins/` directory
+1. Upload `list-all-posts-by-ACT` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Place [ACT-list] in a page
 

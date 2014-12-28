@@ -22,6 +22,19 @@ Shortcode's options include:
 * excluding any category from the list
 * excluding/including admin users from the list
 
+Output grouped by Category will look like:
+
+CAT1
+	post1						AUTHOR
+	SUBCAT1
+		post2					AUTHOR
+		post3					AUTHOR
+		SUBCAT2
+			post4				AUTHOR
+			...
+			...
+			
+
 Default usage:
 
 [ACT-list]
@@ -43,7 +56,7 @@ Include admin's posts:
 
 == Installation ==
 
-1. Upload `list-all-posts-by-ACT.php` to the `/wp-content/plugins/` directory
+1. Upload `list-all-posts-by-ACT` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Place [ACT-list] in a page
 
