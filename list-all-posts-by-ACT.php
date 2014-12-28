@@ -34,14 +34,14 @@ require_once 'include/ACT-displayer.php';
 
 /* Shortcode */
 
-function fullindex( $atts) {
+function ACT_fullindex( $atts) {
 	$atts = shortcode_atts(array(
 			'exclude'	=>	null,
 			'admin'		=>	0
 			 ), $atts);
-	return hierarchy_indexes($atts);
+	return ACT_hierarchy_indexes($atts);
 	}
-add_shortcode( 'ACT-list', 'fullindex' );
+add_shortcode( 'ACT-list', 'ACT_fullindex' );
 
 /* Localization */
 

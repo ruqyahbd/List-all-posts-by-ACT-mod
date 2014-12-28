@@ -9,7 +9,7 @@
 
 
 
-function hierarchy_indexes($atts){
+function ACT_hierarchy_indexes($atts){
 
 	if (!isset($_POST['order'])) {
     	$_POST['order']="category";
@@ -41,32 +41,32 @@ if ($atts["admin"]) :
 endif;
 
 	if ($_POST['order']  == "author") {
-		byauthor($exclude_list, $add_admin);
+		ACT_byauthor($exclude_list, $add_admin);
 	}
 	
 	elseif ($_POST['order']  == "title") {
-		bytitle($exclude_list, $add_admin);
+		ACT_bytitle($exclude_list, $add_admin);
 		}
 	else{
-		bycategory($exclude_list, $add_admin);
+		ACT_bycategory($exclude_list, $add_admin);
 	}
  echo "</div>";
 }
 	
-function bycategory($exclude_list, $add_admin) {
+function ACT_bycategory($exclude_list, $add_admin) {
 	/* Start browsing categories*/
 	foreach( get_categories('hide_empty=0') as $cat ) :
 		$args = array(
     	'category__in' => array($cat->term_id)
 	 	);
 		$my_query = new WP_Query($args); 
-		if (check_excluded_cats($cat->slug, $exclude_list)): continue;
+		if (ACT_check_excluded_cats($cat->slug, $exclude_list)): continue;
 		endif;
 	
 	 	if( !$cat->parent ) {?>
         <h4><?php echo $cat->name; ?></h4>
  		<?php
- 	 	traverse_cat_tree( $cat->term_id,$exclude_list, $add_admin );
+ 	 	ACT_traverse_cat_tree( $cat->term_id,$exclude_list, $add_admin );
  	 	 }
 	endforeach;
  	wp_reset_query(); //to reset all trouble done to the original query
@@ -76,7 +76,7 @@ function bycategory($exclude_list, $add_admin) {
 
 
 
-function traverse_cat_tree( $cat, $exclude_list, $add_admin ) {
+function ACT_traverse_cat_tree( $cat, $exclude_list, $add_admin ) {
  
  $args = array('category__in' => array( $cat ), 'numberposts' => -1);
  $cat_posts = get_posts( $args );
@@ -99,17 +99,17 @@ function traverse_cat_tree( $cat, $exclude_list, $add_admin ) {
  
  if( $next ) :
  foreach( $next as $cat ) :
- 	if (check_excluded_cats($cat->slug, $exclude_list)): continue;
+ 	if (ACT_check_excluded_cats($cat->slug, $exclude_list)): continue;
 		endif;
  	echo '<ul><li class="subcat">'.$cat->name.'</li>';
- 	traverse_cat_tree( $cat->term_id, $exclude_list, $add_admin );
+ 	ACT_traverse_cat_tree( $cat->term_id, $exclude_list, $add_admin );
  	endforeach;
  	endif;
  echo '</ul>';
 }
 
 
-function bytitle($exclude_list, $add_admin) {
+function ACT_bytitle($exclude_list, $add_admin) {
 	$args = array(  'posts_per_page' => -1, 
 				'orderby' => 'title' , 
 				'order' => 'ASC'); 
@@ -118,7 +118,7 @@ function bytitle($exclude_list, $add_admin) {
     	foreach ($articoli as $articolo ):
     	
     	/* excluded categories  */
-	    	if (check_post_cat($exclude_list, $articolo->ID)): 
+	    	if (ACT_check_post_cat($exclude_list, $articolo->ID)): 
 	    		continue;
 	    	endif;
 	    	
@@ -135,7 +135,7 @@ function bytitle($exclude_list, $add_admin) {
     endif;
 }
 
-function byauthor($exclude_list, $add_admin) {
+function ACT_byauthor($exclude_list, $add_admin) {
  if (!$add_admin) {	
  	$param = 'blog_id=1&orderby=nicename&role=author';
  	}
@@ -161,7 +161,7 @@ foreach ( $autori as $user ):
 	    foreach ($author_posts as $author_post)  {
 	    
 	    	/* excluded categories   */
-	    	if (check_post_cat($exclude_list, $author_post->ID)): 
+	    	if (ACT_check_post_cat($exclude_list, $author_post->ID)): 
 	    		continue;
 	    	endif;
 	    	    		
@@ -180,7 +180,7 @@ foreach ( $autori as $user ):
 	endforeach;
 	}
 	
-function check_excluded_cats($catname, $exclude_list) { 
+function ACT_check_excluded_cats($catname, $exclude_list) { 
  		/* exclude category */
 		if ($exclude_list) :
 			if ( in_array($catname, $exclude_list, true)) {
@@ -190,7 +190,7 @@ function check_excluded_cats($catname, $exclude_list) {
 		return false;
 }
 
-function check_post_cat($exclude_list, $postID) {
+function ACT_check_post_cat($exclude_list, $postID) {
 			if ($exclude_list) : 
     			if (has_category($exclude_list,$postID)): return true;
     			endif;
