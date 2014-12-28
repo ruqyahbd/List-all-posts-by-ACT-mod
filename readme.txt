@@ -29,4 +29,3 @@ Shortcode's options include:
 3. Place [ACT-list] in a page
 
  
-
