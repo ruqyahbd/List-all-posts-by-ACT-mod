@@ -1,5 +1,5 @@
-List-all-posts-by-ACT
-=====================
+=== List all posts by Authors, nested Categories and Titles  ===
+=======================
 
 
 Contributors: fmarzocca
@@ -60,4 +60,10 @@ Include admin's posts:
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Place [ACT-list] in a page
 
- 
+== Frequently Asked Questions ==
+
+n.n.
+
+== Changelog ==
+
+v. 0.5  - first issue
