@@ -15,7 +15,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-Particularly suitable to all multi-nested categories and multi-authors website, with lots of posts and complex category layout. This plugin allow the user to place a shortcode into any page and get rid of a long and nested menu/submenu to show all site's posts. A selector in the page will allow the reader to select grouping by Category/Author/Title.
+Particularly suitable to all multi-nested categories and multi-authors website, with lots of posts and complex category layout (i.e.: academic papers, newpapers articles, etc). This plugin allow the user to place a shortcode into any page and get rid of a long and nested menu/submenu to show all site's posts. A selector in the page will allow the reader to select grouping by Category/Author/Title.
 
 Shortcode's options include:
 
