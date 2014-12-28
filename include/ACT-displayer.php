@@ -113,9 +113,11 @@ function bytitle($exclude_list, $add_admin) {
     if ($articoli):
     	foreach ($articoli as $articolo ):
     	
-    	/* excluded categories   */
-    		if (has_category($exclude_list,$articolo->ID)): continue;
-    		endif;
+    	/* excluded categories  */
+	    	if (check_post_cat($exclude_list, $articolo->ID)): 
+	    		continue;
+	    	endif;
+	    	
     	/* include admin? */
     		if (!$add_admin) {	
     			if (is_super_admin($articolo->post_author)) : continue;
@@ -155,9 +157,10 @@ foreach ( $autori as $user ):
 	    foreach ($author_posts as $author_post)  {
 	    
 	    	/* excluded categories   */
-    		if (has_category($exclude_list,$author_post->ID)): continue;
-    		endif;
-    		
+	    	if (check_post_cat($exclude_list, $author_post->ID)): 
+	    		continue;
+	    	endif;
+	    	    		
  			echo '<li><a href="' . get_permalink( $author_post->ID ) . '">'.$author_post->post_title.'</a>';
  			$categories = get_the_category( $author_post->ID );
  			$list_cats =null;
@@ -181,7 +184,13 @@ function check_excluded_cats($catname, $exclude_list) {
 				}	
 		endif;
 		return false;
-	}
+}
 
-
+function check_post_cat($exclude_list, $postID) {
+			if ($exclude_list) : 
+    			if (has_category($exclude_list,$postID)): return true;
+    			endif;
+			endif;
+			return false;
+}
 ?>
