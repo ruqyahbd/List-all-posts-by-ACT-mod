@@ -16,8 +16,11 @@ function hierarchy_indexes($atts){
     }
 
 ?>
+
+<div class="ACT-wrapper">
+
 <form name="form1" method="post" action="<?=$PHP_SELF?>"  >
-        <div align="center" class="styled-select"><?php _e("Group by:", 'list-all-posts-by-ACT'); ?> 
+        <div align="center" class="styled-select"><?php _e("Group by:", 'list-all-posts-by-ACT') ?> 
           <select name="order"  id="order"  onChange=" ;this.form.submit();">
             <option value="author" <?php if ($_POST['order']  == "author") echo "selected"; ?>><?php _e("Author", 'list-all-posts-by-ACT'); ?> </option>
             <option value="title" <?php if ($_POST['order']  == "title") echo "selected"; ?>><?php _e("Title", 'list-all-posts-by-ACT'); ?> </option>
@@ -27,14 +30,14 @@ function hierarchy_indexes($atts){
     </form>
 <?php
 
-$exclude_list = null;
+$exclude_list=null;
 if ($atts["exclude"]) :
 	$exclude_list = explode(",", preg_replace('/\s+/', '', $atts["exclude"]));
 endif;
 
-$add_admin = false;
+$add_admin=false;
 if ($atts["admin"]) :
-	$add_admin = true;
+	$add_admin=true;
 endif;
 
 	if ($_POST['order']  == "author") {
@@ -47,10 +50,10 @@ endif;
 	else{
 		bycategory($exclude_list, $add_admin);
 	}
+ echo "</div>";
 }
 	
 function bycategory($exclude_list, $add_admin) {
-
 	/* Start browsing categories*/
 	foreach( get_categories('hide_empty=0') as $cat ) :
 		$args = array(
@@ -61,7 +64,7 @@ function bycategory($exclude_list, $add_admin) {
 		endif;
 	
 	 	if( !$cat->parent ) {?>
-        <h4 style="text-transform:uppercase;"><?php echo $cat->name; ?></h4>
+        <h4><?php echo $cat->name; ?></h4>
  		<?php
  	 	traverse_cat_tree( $cat->term_id,$exclude_list, $add_admin );
  	 	 }
@@ -86,9 +89,9 @@ function traverse_cat_tree( $cat, $exclude_list, $add_admin ) {
  		if (is_super_admin($post->post_author)) : continue;
  		endif;
  	}
- 	echo '<li style="margin-left:20px;">';
+ 	echo '<li class="subpost">';
  	echo '<a href="' . get_permalink( $post->ID ) . '">' . $post->post_title . '</a>';
- 	echo "<span style='text-transform:uppercase; float:right;'>[".get_the_author_meta( 'first_name', $post->post_author )." ".get_the_author_meta( 'last_name', $post->post_author )."]</span>";
+ 	echo "<span class='righttext'>[".get_the_author_meta( 'first_name', $post->post_author )." ".get_the_author_meta( 'last_name', $post->post_author )."]</span>";
  	echo '</li>';
  	endforeach;
  endif;
@@ -98,7 +101,7 @@ function traverse_cat_tree( $cat, $exclude_list, $add_admin ) {
  foreach( $next as $cat ) :
  	if (check_excluded_cats($cat->slug, $exclude_list)): continue;
 		endif;
- 	echo '<ul style="margin-bottom:0px; text-transform:upercase"><li><strong>'.$cat->name.'</strong></li>';
+ 	echo '<ul><li class="subcat">'.$cat->name.'</li>';
  	traverse_cat_tree( $cat->term_id, $exclude_list, $add_admin );
  	endforeach;
  	endif;
@@ -126,7 +129,7 @@ function bytitle($exclude_list, $add_admin) {
  			}
     		echo '<li>';
  			echo '<a href="' . get_permalink( $articolo->ID ) . '">' . $articolo->post_title . '</a>';
- 			echo "<span style='text-transform:uppercase; float:right;'>[".get_the_author_meta( 'first_name', $articolo->post_author )." ".get_the_author_meta( 'last_name', $articolo->post_author )."]</span>";
+ 			echo "<span class='righttext'>[".get_the_author_meta( 'first_name', $articolo->post_author )." ".get_the_author_meta( 'last_name', $articolo->post_author )."]</span>";
  			echo '</li>';
     	endforeach;
     endif;
@@ -143,15 +146,15 @@ function byauthor($exclude_list, $add_admin) {
 // Array of WP_User objects.
 foreach ( $autori as $user ):
 	$args= array(
-    		'author'        	=>  $user->ID, 
-			'posts_per_page' 	=>  -1,
-    		'orderby'       	=>  'title',
-    		'order'         	=>  'ASC' 
+    		'author'        =>  $user->ID, 
+			'posts_per_page' =>  -1,
+    		'orderby'       =>  'title',
+    		'order'         =>  'ASC' 
    		 );
 	
 	$author_posts=  get_posts( $args ); 
 	if (!$author_posts): continue; endif;
-	echo '<h4 style="text-transform:uppercase;">'.$user->display_name. '</h4>';
+	echo '<h4>'.$user->display_name. '</h4>';
 	
 	if($author_posts){
 		echo '<ul>';
@@ -169,7 +172,7 @@ foreach ( $autori as $user ):
  				$list_cats .= $cat->name.", ";
  			endforeach;
  			$list_cats = substr($list_cats, 0, -2);
- 			echo "<span style='text-transform:uppercase; float:right;'>[".$list_cats."]</span>";
+ 			echo "<span class='righttext'>[".$list_cats."]</span>";
  			echo '</li>';
 		}
 	}

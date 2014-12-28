@@ -1,0 +1,18 @@
+.ACT-wrapper h4 {
+	text-transform: uppercase;
+	}
+	
+li.subcat {
+	margin-bottom:0px; 
+	text-transform:uppercase;
+	font-weight: bold;
+}
+
+li.subpost {
+	margin-left:20px;
+}
+
+.ACT-wrapper .righttext {
+	text-transform:uppercase; 
+	float:right;
+}

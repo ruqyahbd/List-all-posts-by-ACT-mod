@@ -32,20 +32,31 @@ define('ATP_DIR', dirname(__FILE__));
 
 require_once 'include/ACT-displayer.php';
 
+/* Shortcode */
+
 function fullindex( $atts) {
 	$atts = shortcode_atts(array(
 			'exclude'	=>	null,
 			'admin'		=>	0
 			 ), $atts);
 	return hierarchy_indexes($atts);
-}
+	}
 add_shortcode( 'ACT-list', 'fullindex' );
 
+/* Localization */
 
 function load_i18n(){
-  load_plugin_textdomain( 'list-all-posts-by-ACT', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
-}
-add_action( 'plugins_loaded', 'load_i18n' );
+	load_plugin_textdomain( 'list-all-posts-by-ACT', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+	}
+	add_action( 'plugins_loaded', 'load_i18n' );
 
+ 
+/* Add CSS */
+	
+function ACT_css(){
+		wp_register_style( 'ACT_css', plugins_url( 'ACT.css' , __FILE__ ) );
+		wp_enqueue_style( 'ACT_css' );
+	} // function
+add_action( 'wp_enqueue_scripts', 'ACT_css' );
 
 ?>
