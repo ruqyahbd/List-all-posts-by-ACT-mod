@@ -11,11 +11,11 @@ Stable tag: 0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-[WP Plugin] This plugin lists all posts by Author, nested Categories and Title, allowing to place the lists in any page
+This plugin lists all posts by Author, nested Categories and Title, allowing to place the lists in any page.
 
 == Description ==
 
-Particularly suitable to all multi-nested categories and multi-authors website, with lots of posts and complex category layout (i.e.: academic papers, newpapers articles, etc). This plugin allow the user to place a shortcode into any page and get rid of a long and nested menu/submenu to show all site's posts. A selector in the page will allow the reader to select grouping by Category/Author/Title.
+Particularly suitable to all multi-nested categories and multi-authors website, with lots of posts and complex category layout (i.e.: academic papers, newpapers articles, etc). This plugin allows the user to place a shortcode into any page and get rid of a long and nested menu/submenu to show all site's posts. A selector in the page will allow the reader to select grouping by Category/Author/Title.
 
 Shortcode's options include:
 
@@ -24,7 +24,7 @@ Shortcode's options include:
 
 Output grouped by Category will look like:
 
-CAT1
+<pre><code>CAT1
 	post1						AUTHOR
 	SUBCAT1
 		post2					AUTHOR
@@ -33,25 +33,25 @@ CAT1
 			post4				AUTHOR
 			...
 			...
-			
+</code></pre>
 
 **Default usage:**
 
 [ACT-list]
 
-	* all categories and subcategories post, excluding administrator's posts, grouped by (upon selection) Category/Author/Title
+all categories and subcategories post, excluding administrator's posts, grouped by (upon selection) Category/Author/Title
 	
 **Exclude categories:**
 
 [ACT-list exclude="cat1-slug, cat2-slug, ..."]
 
-	* listed categories will be excluded. Categories must be listed with their slugnames.
+listed categories will be excluded. Categories must be listed with their *slugnames*.
 	
 **Include admin's posts:**
 
 [ACT-list admin=1]
 
-	* this option will also include all admin's posts in the list.
+this option will also include all admin's posts in the list.
 	
 
 == Installation ==
