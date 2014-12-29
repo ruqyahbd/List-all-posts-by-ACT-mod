@@ -1,2 +1,0 @@
-- includere "Group by:" in un div con il select in modo da poterlo poi nascondere se serve;
-
