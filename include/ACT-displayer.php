@@ -50,7 +50,7 @@ endif;
 	else{
 		ACT_bycategory($exclude_list, $add_admin);
 	}
- echo "</div>";
+ echo "</div> <!-- ACT-wrapper -->";
 }
 	
 function ACT_bycategory($exclude_list, $add_admin) {
@@ -64,7 +64,7 @@ function ACT_bycategory($exclude_list, $add_admin) {
 		endif;
 	
 	 	if( !$cat->parent ) {?>
-        <h4><?php echo $cat->name; ?></h4>
+        <h4><?php echo $cat->name; ?></h4><ul>
  		<?php
  	 	ACT_traverse_cat_tree( $cat->term_id,$exclude_list, $add_admin );
  	 	 }
