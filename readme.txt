@@ -2,12 +2,12 @@
 =======================
 
 
-Contributors: fmarzocca
+Contributors: Fabio Marzocca
 Donate link: TBD
 Tags: nested categories, posts, authors, titles
 Requires at least: 4.0.1
 Tested up to: 4.1
-Stable tag: 0.5.2
+Stable tag: 0.5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -62,9 +62,13 @@ this option will also include all admin's posts in the list.
 
 == Frequently Asked Questions ==
 
-n.n.
+1. Style customization.
+   All lists are included in *ATC-wrapper* div. You can override it in your child theme style.css
 
 == Changelog ==
+
+= 0.5.3 =
+* Added a missing <ul> in byTitle list
 
 = 0.5.2 =
 * few styling adjustments

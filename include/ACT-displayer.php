@@ -115,6 +115,7 @@ function ACT_bytitle($exclude_list, $add_admin) {
 				'order' => 'ASC'); 
     $articoli = get_posts($args);
     if ($articoli):
+	echo "<ul>";
     	foreach ($articoli as $articolo ):
     	
     	/* excluded categories  */
@@ -132,6 +133,7 @@ function ACT_bytitle($exclude_list, $add_admin) {
  			echo "<span class='righttext'>[".get_the_author_meta( 'first_name', $articolo->post_author )." ".get_the_author_meta( 'last_name', $articolo->post_author )."]</span>";
  			echo '</li>';
     	endforeach;
+	echo "</ul>";
     endif;
 }
 
