@@ -3,7 +3,7 @@
 
 
 Contributors: fmarzocca
-Donate link: TBD
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4EH3N5XZJZCRQ
 Tags: nested categories, posts, authors, titles
 Requires at least: 4.0.1
 Tested up to: 4.1
@@ -59,6 +59,8 @@ this option will also include all admin's posts in the list.
 [ACT-list single=1]
 
 this option is suited for websites with a single author (or when you don't want to show the authors). It removes grouping by Authors and any author name. This option includes the *admin=1* option, so that it will list any post in the website. You can still apply "excluding categories" option.
+
+> If you like the plugin, feel free to rate it (on the right side of this page) or [donate via PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4EH3N5XZJZCRQ). Thanks a lot! :)
 
 == Installation ==
 
