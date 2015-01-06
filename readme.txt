@@ -64,6 +64,15 @@ this option will also include all admin's posts in the list.
 
 = Can I customize the style in the lists? =
    Yes, all lists are included in *ATC-wrapper* div. You can override it in your child theme style.css
+   
+= Can I remove the selector, so that the plugin will display the Category list only (not grouping by Author or by Title)? =
+Yes. Add the following lines to your child-theme style.css file:
+	
+<pre><code>
+.ACT-wrapper .styled-select{
+	display:none;
+}
+</code></pre>
 
 == Changelog ==
 
