@@ -7,7 +7,7 @@ Donate link: TBD
 Tags: nested categories, posts, authors, titles
 Requires at least: 4.0.1
 Tested up to: 4.1
-Stable tag: 0.5.4
+Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,12 +15,13 @@ This plugin lists all posts by Author, nested Categories and Title, allowing to 
 
 == Description ==
 
-Particularly suitable to all multi-nested categories and multi-authors website, with lots of posts and complex category layout (i.e.: academic papers, newpapers articles, etc). This plugin allows the user to place a shortcode into any page and get rid of a long and nested menu/submenu to show all site's posts. A selector in the page will allow the reader to select grouping by Category/Author/Title.
+Particularly suitable to all multi-nested categories and multi-authors website, with lots of posts and complex category layout (i.e.: academic papers, newpapers articles, etc), but also for single-user websites (read below). This plugin allows the user to place a shortcode into any page and get rid of a long and nested menu/submenu to show all site's posts. A selector in the page will allow the reader to select grouping by Category/Author/Title.
 
 Shortcode's options include:
 
 * excluding any category from the list
 * excluding/including admin users from the list
+* single-user website usage
 
 Output grouped by Category will look like:
 
@@ -53,6 +54,11 @@ listed categories will be excluded. Categories must be listed with their *slugna
 
 this option will also include all admin's posts in the list.
 	
+**(NEW) Single-user website:**
+
+[ACT-list single=1]
+
+this option is suited for websites with a single author (or when you don't want to show the authors). It removes grouping by Authors and any author name. This option includes the *admin=1* option, so that it will list any post in the website. You can still apply "excluding categories" option.
 
 == Installation ==
 
@@ -75,6 +81,10 @@ Yes. Add the following lines to your child-theme style.css file:
 </code></pre>
 
 == Changelog ==
+
+= 1.0 =
+* Introducing the *single* option, for single-user websites
+* Updated description to include the new option
 
 = 0.5.4 =
 * readme.txt improvements

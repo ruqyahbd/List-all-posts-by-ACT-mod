@@ -15,14 +15,32 @@ function ACT_hierarchy_indexes($atts){
     	$_POST['order']="category";
     }
 
+	$exclude_list=null;
+	if ($atts["exclude"]) :
+		$exclude_list = explode(",", preg_replace('/\s+/', '', $atts["exclude"]));
+	endif;
+
+	$add_admin=false;
+	if ($atts["admin"]) :
+		$add_admin=true;
+	endif;
+	
+	if ($atts["single"]) :
+		$add_admin = true;
+		$single = true; 
+	endif;
 ?>
+
+
 
 <div class="ACT-wrapper">
 
 <form name="form1" method="post" action="<?=$PHP_SELF?>"  >
         <div align="center" class="styled-select"><?php _e("Group by:", 'list-all-posts-by-ACT') ?> 
           <select name="order"  id="order"  onChange=" ;this.form.submit();">
+          <?php if (!($single)): ?>
             <option value="author" <?php if ($_POST['order']  == "author") echo "selected"; ?>><?php _e("Author", 'list-all-posts-by-ACT'); ?> </option>
+            <?php endif; ?>
             <option value="title" <?php if ($_POST['order']  == "title") echo "selected"; ?>><?php _e("Title", 'list-all-posts-by-ACT'); ?> </option>
             <option value="category" <?php if ($_POST['order']  == "category") echo "selected"; ?>><?php _e("Category", 'list-all-posts-by-ACT'); ?> </option>
           </select>
@@ -30,30 +48,21 @@ function ACT_hierarchy_indexes($atts){
     </form>
 <?php
 
-$exclude_list=null;
-if ($atts["exclude"]) :
-	$exclude_list = explode(",", preg_replace('/\s+/', '', $atts["exclude"]));
-endif;
-
-$add_admin=false;
-if ($atts["admin"]) :
-	$add_admin=true;
-endif;
 
 	if ($_POST['order']  == "author") {
 		ACT_byauthor($exclude_list, $add_admin);
 	}
 	
 	elseif ($_POST['order']  == "title") {
-		ACT_bytitle($exclude_list, $add_admin);
+		ACT_bytitle($exclude_list, $add_admin, $single);
 		}
 	else{
-		ACT_bycategory($exclude_list, $add_admin);
+		ACT_bycategory($exclude_list, $add_admin, $single);
 	}
  echo "</div> <!-- ACT-wrapper -->";
 }
 	
-function ACT_bycategory($exclude_list, $add_admin) {
+function ACT_bycategory($exclude_list, $add_admin, $single) {
 	/* Start browsing categories*/
 	foreach( get_categories('hide_empty=0') as $cat ) :
 		$args = array(
@@ -66,7 +75,7 @@ function ACT_bycategory($exclude_list, $add_admin) {
 	 	if( !$cat->parent ) {?>
         <h4><?php echo $cat->name; ?></h4><ul>
  		<?php
- 	 	ACT_traverse_cat_tree( $cat->term_id,$exclude_list, $add_admin );
+ 	 	ACT_traverse_cat_tree( $cat->term_id,$exclude_list, $add_admin, $single );
  	 	 }
 	endforeach;
  	wp_reset_query(); //to reset all trouble done to the original query
@@ -76,7 +85,7 @@ function ACT_bycategory($exclude_list, $add_admin) {
 
 
 
-function ACT_traverse_cat_tree( $cat, $exclude_list, $add_admin ) {
+function ACT_traverse_cat_tree( $cat, $exclude_list, $add_admin, $single ) {
  
  $args = array('category__in' => array( $cat ), 'numberposts' => -1);
  $cat_posts = get_posts( $args );
@@ -91,7 +100,9 @@ function ACT_traverse_cat_tree( $cat, $exclude_list, $add_admin ) {
  	}
  	echo '<li class="subpost">';
  	echo '<a href="' . get_permalink( $post->ID ) . '">' . $post->post_title . '</a>';
- 	echo "<span class='righttext'>[".get_the_author_meta( 'first_name', $post->post_author )." ".get_the_author_meta( 'last_name', $post->post_author )."]</span>";
+ 	if (!($single)):
+ 		echo "<span class='righttext'>[".get_the_author_meta( 'first_name', $post->post_author )." ".get_the_author_meta( 'last_name', $post->post_author )."]</span>";
+ 	endif; 
  	echo '</li>';
  	endforeach;
  endif;
@@ -102,14 +113,14 @@ function ACT_traverse_cat_tree( $cat, $exclude_list, $add_admin ) {
  	if (ACT_check_excluded_cats($cat->slug, $exclude_list)): continue;
 		endif;
  	echo '<ul><li class="subcat">'.$cat->name.'</li>';
- 	ACT_traverse_cat_tree( $cat->term_id, $exclude_list, $add_admin );
+ 	ACT_traverse_cat_tree( $cat->term_id, $exclude_list, $add_admin, $single );
  	endforeach;
  	endif;
  echo '</ul>';
 }
 
 
-function ACT_bytitle($exclude_list, $add_admin) {
+function ACT_bytitle($exclude_list, $add_admin, $single) {
 	$args = array(  'posts_per_page' => -1, 
 				'orderby' => 'title' , 
 				'order' => 'ASC'); 
@@ -130,7 +141,17 @@ function ACT_bytitle($exclude_list, $add_admin) {
  			}
     		echo '<li>';
  			echo '<a href="' . get_permalink( $articolo->ID ) . '">' . $articolo->post_title . '</a>';
- 			echo "<span class='righttext'>[".get_the_author_meta( 'first_name', $articolo->post_author )." ".get_the_author_meta( 'last_name', $articolo->post_author )."]</span>";
+ 			if (!($single)):
+ 				echo "<span class='righttext'>[".get_the_author_meta( 'first_name', $articolo->post_author )." ".get_the_author_meta( 'last_name', $articolo->post_author )."]</span>";
+ 			else :
+				$categories = get_the_category( $articolo->ID );
+ 				$list_cats =null;
+ 				foreach ($categories as  $cat):
+ 					$list_cats .= $cat->name.", ";
+ 				endforeach;
+ 				$list_cats = substr($list_cats, 0, -2);
+ 				echo "<span class='righttext'>[".$list_cats."]</span>"; 			
+ 			endif;
  			echo '</li>';
     	endforeach;
 	echo "</ul>";
