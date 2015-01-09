@@ -15,67 +15,71 @@ function ACT_hierarchy_indexes($atts){
     	$_POST['order']="category";
     }
 
-	$exclude_list=null;
-	if ($atts["exclude"]) :
-		$exclude_list = explode(",", preg_replace('/\s+/', '', $atts["exclude"]));
-	endif;
-
-	$add_admin=false;
-	if ($atts["admin"]) :
-		$add_admin=true;
-	endif;
+	if ($atts['singleuser']) {
+		$atts['admin'] = "1";
+		}
+	ob_start();
 	
-	if ($atts["single"]) :
-		$add_admin = true;
-		$single = true; 
-	endif;
+	echo '<div class="ACT-wrapper">';
+	if (count(explode(",", $atts['show'])) > 1 ) :
 ?>
-
-
-
-<div class="ACT-wrapper">
 
 <form name="form1" method="post" action="<?=$PHP_SELF?>"  >
         <div align="center" class="styled-select"><?php _e("Group by:", 'list-all-posts-by-ACT') ?> 
           <select name="order"  id="order"  onChange=" ;this.form.submit();">
-          <?php if (!($single)): ?>
+          <?php if (!($atts['singleuser']) and strpos($atts['show'], "Author") !== false): ?>
             <option value="author" <?php if ($_POST['order']  == "author") echo "selected"; ?>><?php _e("Author", 'list-all-posts-by-ACT'); ?> </option>
             <?php endif; ?>
+            <?php if (strpos($atts['show'], "Title") !== false ): ?>
             <option value="title" <?php if ($_POST['order']  == "title") echo "selected"; ?>><?php _e("Title", 'list-all-posts-by-ACT'); ?> </option>
+             <?php endif; ?>
+             <?php if (strpos($atts['show'], "Category") !== false ): ?>
             <option value="category" <?php if ($_POST['order']  == "category") echo "selected"; ?>><?php _e("Category", 'list-all-posts-by-ACT'); ?> </option>
+            <?php endif; ?>
           </select>
         </div>
     </form>
 <?php
 
+	endif;
+	
+	if (count(explode(",", $atts['show'])) == 1 ):
+		$_POST['order'] = strtolower($atts['show']);
+	endif;
+	
+	if ( count(explode(",", $atts['show'])) == 2 and strpos($atts['show'], "Category") === false):
+		$_POST['order'] = "author";
+	endif;
 
 	if ($_POST['order']  == "author") {
-		ACT_byauthor($exclude_list, $add_admin);
+		ACT_byauthor($atts);
 	}
 	
 	elseif ($_POST['order']  == "title") {
-		ACT_bytitle($exclude_list, $add_admin, $single);
+		ACT_bytitle($atts);
 		}
 	else{
-		ACT_bycategory($exclude_list, $add_admin, $single);
+		ACT_bycategory($atts);
 	}
  echo "</div> <!-- ACT-wrapper -->";
+ $output_string=ob_get_contents();;
+ ob_end_clean();
+ return $output_string;
 }
 	
-function ACT_bycategory($exclude_list, $add_admin, $single) {
+function ACT_bycategory($atts) {
 	/* Start browsing categories*/
 	foreach( get_categories('hide_empty=0') as $cat ) :
 		$args = array(
     	'category__in' => array($cat->term_id)
 	 	);
 		$my_query = new WP_Query($args); 
-		if (ACT_check_excluded_cats($cat->slug, $exclude_list)): continue;
+		if  (strpos($atts['exclude'], $cat->slug)!== false): continue;
 		endif;
 	
-	 	if( !$cat->parent ) {?>
-        <h4><?php echo $cat->name; ?></h4><ul>
- 		<?php
- 	 	ACT_traverse_cat_tree( $cat->term_id,$exclude_list, $add_admin, $single );
+	 	if( !$cat->parent ) {
+	 		echo "<h4>".$cat->name."</h4><ul>";
+ 	 		ACT_traverse_cat_tree( $cat->term_id,$atts);
  	 	 }
 	endforeach;
  	wp_reset_query(); //to reset all trouble done to the original query
@@ -83,9 +87,7 @@ function ACT_bycategory($exclude_list, $add_admin, $single) {
 }
 
 
-
-
-function ACT_traverse_cat_tree( $cat, $exclude_list, $add_admin, $single ) {
+function ACT_traverse_cat_tree( $cat, $atts ) {
  
  $args = array('category__in' => array( $cat ), 'numberposts' => -1);
  $cat_posts = get_posts( $args );
@@ -94,13 +96,13 @@ function ACT_traverse_cat_tree( $cat, $exclude_list, $add_admin, $single ) {
  foreach( $cat_posts as $post ) :
  
  	/* exclude admin?  */
- 	if (!$add_admin) {
+ 	if (!$atts['admin']) {
  		if (is_super_admin($post->post_author)) : continue;
  		endif;
  	}
  	echo '<li class="subpost">';
  	echo '<a href="' . get_permalink( $post->ID ) . '">' . $post->post_title . '</a>';
- 	if (!($single)):
+ 	if (!($atts['singleuser'])):
  		echo "<span class='righttext'>[".get_the_author_meta( 'first_name', $post->post_author )." ".get_the_author_meta( 'last_name', $post->post_author )."]</span>";
  	endif; 
  	echo '</li>';
@@ -110,17 +112,17 @@ function ACT_traverse_cat_tree( $cat, $exclude_list, $add_admin, $single ) {
  
  if( $next ) :
  foreach( $next as $cat ) :
- 	if (ACT_check_excluded_cats($cat->slug, $exclude_list)): continue;
+ 	if  (strpos($atts['exclude'], $cat->slug)!== false): continue;
 		endif;
  	echo '<ul><li class="subcat">'.$cat->name.'</li>';
- 	ACT_traverse_cat_tree( $cat->term_id, $exclude_list, $add_admin, $single );
+ 	ACT_traverse_cat_tree( $cat->term_id, $atts);
  	endforeach;
  	endif;
  echo '</ul>';
 }
 
 
-function ACT_bytitle($exclude_list, $add_admin, $single) {
+function ACT_bytitle($atts) {
 	$args = array(  'posts_per_page' => -1, 
 				'orderby' => 'title' , 
 				'order' => 'ASC'); 
@@ -129,19 +131,19 @@ function ACT_bytitle($exclude_list, $add_admin, $single) {
 	echo "<ul>";
     	foreach ($articoli as $articolo ):
     	
-    	/* excluded categories  */
-	    	if (ACT_check_post_cat($exclude_list, $articolo->ID)): 
+    	/* excluded categories  */ 
+	    	if (has_category(explode(',',$atts['exclude']),$articolo->ID)):
 	    		continue;
 	    	endif;
 	    	
     	/* include admin? */
-    		if (!$add_admin) {	
+    		if (!$atts['admin']) {	
     			if (is_super_admin($articolo->post_author)) : continue;
  				endif;
  			}
     		echo '<li>';
  			echo '<a href="' . get_permalink( $articolo->ID ) . '">' . $articolo->post_title . '</a>';
- 			if (!($single)):
+ 			if (!($atts['singleuser'])):
  				echo "<span class='righttext'>[".get_the_author_meta( 'first_name', $articolo->post_author )." ".get_the_author_meta( 'last_name', $articolo->post_author )."]</span>";
  			else :
 				$categories = get_the_category( $articolo->ID );
@@ -158,8 +160,8 @@ function ACT_bytitle($exclude_list, $add_admin, $single) {
     endif;
 }
 
-function ACT_byauthor($exclude_list, $add_admin) {
- if (!$add_admin) {	
+function ACT_byauthor($atts) {
+ if (!$atts['admin']) {	
  	$param = 'blog_id=1&orderby=nicename&role=author';
  	}
  else {
@@ -177,14 +179,14 @@ foreach ( $autori as $user ):
 	
 	$author_posts=  get_posts( $args ); 
 	if (!$author_posts): continue; endif;
-	echo '<h4>'.$user->display_name. '</h4>';
+	echo '<h4>'.$user->display_name.'</h4>';
 	
 	if($author_posts){
 		echo '<ul>';
 	    foreach ($author_posts as $author_post)  {
 	    
 	    	/* excluded categories   */
-	    	if (ACT_check_post_cat($exclude_list, $author_post->ID)): 
+	    	if (has_category(explode(',',$atts['exclude']),$author_post->ID)):
 	    		continue;
 	    	endif;
 	    	    		
@@ -202,22 +204,6 @@ foreach ( $autori as $user ):
 	echo '</ul>';
 	endforeach;
 	}
-	
-function ACT_check_excluded_cats($catname, $exclude_list) { 
- 		/* exclude category */
-		if ($exclude_list) :
-			if ( in_array($catname, $exclude_list, true)) {
-					return true;
-				}	
-		endif;
-		return false;
-}
 
-function ACT_check_post_cat($exclude_list, $postID) {
-			if ($exclude_list) : 
-    			if (has_category($exclude_list,$postID)): return true;
-    			endif;
-			endif;
-			return false;
-}
+
 ?>

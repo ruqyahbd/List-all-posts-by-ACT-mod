@@ -7,7 +7,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: nested categories, posts, authors, titles
 Requires at least: 4.0.1
 Tested up to: 4.1
-Stable tag: 1.0
+Stable tag: 1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -54,11 +54,36 @@ listed categories will be excluded. Categories must be listed with their *slugna
 
 this option will also include all admin's posts in the list.
 	
-**(NEW) Single-user website:**
+**Single-user website:**
 
-[ACT-list single=1]
+[ACT-list singleuser=1]
 
 this option is suited for websites with a single author (or when you don't want to show the authors). It removes grouping by Authors and any author name. This option includes the *admin=1* option, so that it will list any post in the website. You can still apply "excluding categories" option.
+
+**Select what list(s) to display**
+
+The parameter "show" will allow the admin to select what lists will be shown and if the dropdown selector is needed or not. i.e.:
+
+[ACT-list show="Category, Author"]
+
+or
+
+[ACT-list show="Title, Category"]
+
+Allowed terms for the "show" parameter are: *Author, Title, Category*.
+
+**Split the lists into separate pages**
+
+By selecting only one variable in the "show" parameter, you will be able to show only one list without the dropdown selector. This will enable you to put the 3 lists into separate pages, or separate tabs of the same page.
+
+Page#1 (or tab#1)
+[ACT-list show="Category"]
+
+Page#2 (or tab#2)
+[ACT-list show="Author"]
+
+Page#3 (or tab#3)
+[ACT-list show="Title"]
 
 > If you like the plugin, feel free to rate it (on the right side of this page) or [donate via PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4EH3N5XZJZCRQ). Thanks a lot! :)
 
@@ -73,16 +98,17 @@ this option is suited for websites with a single author (or when you don't want 
 = Can I customize the style in the lists? =
    Yes, all lists are included in *ATC-wrapper* div. You can override it in your child theme style.css
    
-= Can I remove the selector, so that the plugin will display the Category list only (not grouping by Author or by Title)? =
-Yes. Add the following lines to your child-theme style.css file:
-	
-<pre><code>
-.ACT-wrapper .styled-select{
-	display:none;
-}
-</code></pre>
+= Can I remove the selector, so that the plugin will display only one list? =
+Yes. Just use the *show* option as explained in description
+
 
 == Changelog ==
+
+= 1.5 =
+* Introducing the *show* option, to select what list to display
+* Changing the option *single* to *singleuser* for better understanding 
+* Updated description to include the new option
+
 
 = 1.0 =
 * Introducing the *single* option, for single-user websites
