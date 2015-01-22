@@ -22,6 +22,7 @@ Shortcode's options include:
 * excluding any category from the list
 * excluding/including admin users from the list
 * single-user website usage
+* select what list(s) to display
 
 Output grouped by Category will look like:
 
