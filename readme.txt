@@ -7,7 +7,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: nested categories, posts, authors, titles
 Requires at least: 4.0.1
 Tested up to: 4.1
-Stable tag: 1.5
+Stable tag: 1.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -104,6 +104,9 @@ Yes. Just use the *show* option as explained in description
 
 
 == Changelog ==
+
+= 1.6 =
+* Added German localization
 
 = 1.5 =
 * Introducing the *show* option, to select what list to display
