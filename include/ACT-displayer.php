@@ -161,18 +161,20 @@ function ACT_bytitle($atts) {
 }
 
 function ACT_byauthor($atts) {
- if (!$atts['admin']) {	
- 	$param = 'blog_id=1&orderby=nicename&role=author';
- 	}
- else {
-  	$param = 'blog_id=1&orderby=nicename&who=authors';
-	}
+ $param = 'blog_id=1&orderby=nicename';
  $autori= get_users( $param );
-// Array of WP_User objects.
+
 foreach ( $autori as $user ):
+	/*check if excluded admin */
+	if (!$atts['admin']) {	
+		if (is_super_admin($user->ID)) : 
+			continue;
+ 		endif;
+	}
+	/* Array of WP_User objects */
 	$args= array(
     		'author'        =>  $user->ID, 
-			'posts_per_page' =>  -1,
+		'posts_per_page' =>  -1,
     		'orderby'       =>  'title',
     		'order'         =>  'ASC' 
    		 );

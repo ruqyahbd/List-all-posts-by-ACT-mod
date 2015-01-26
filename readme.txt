@@ -7,7 +7,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: nested categories, posts, authors, titles
 Requires at least: 4.0.1
 Tested up to: 4.1
-Stable tag: 1.6
+Stable tag: 1.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -104,6 +104,9 @@ Yes. Just use the *show* option as explained in description
 
 
 == Changelog ==
+
+= 1.7 =
+* Now all user's role will be listed in the Author page, not only *author* roles.
 
 = 1.6 =
 * Added German localization
