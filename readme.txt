@@ -1,7 +1,4 @@
 === List all posts by Authors, nested Categories and Titles  ===
-=======================
-
-
 Contributors: fmarzocca
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4EH3N5XZJZCRQ
 Tags: nested categories, posts, authors, titles
@@ -106,7 +103,7 @@ Yes. Just use the *show* option as explained in description
 == Changelog ==
 
 = 1.7 =
-* Now all user's role will be listed in the Author page, not only *author* roles.
+* Now all user's roles will be listed in the Author page, not only *author* roles.
 
 = 1.6 =
 * Added German localization
