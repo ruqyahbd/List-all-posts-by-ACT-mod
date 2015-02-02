@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: nested categories, posts, authors, titles
 Requires at least: 4.0.1
 Tested up to: 4.1
-Stable tag: 1.7
+Stable tag: 1.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,6 +20,7 @@ Shortcode's options include:
 * excluding/including admin users from the list
 * single-user website usage
 * select what list(s) to display
+* limit number of posts in list output 
 
 Output grouped by Category will look like:
 
@@ -83,6 +84,12 @@ Page#2 (or tab#2)
 Page#3 (or tab#3)
 [ACT-list show="Title"]
 
+**Limit the number of posts in the lists**
+
+If you have a large numbers of posts (>2,000), it could be convenient to limit the number of posts in the lists, including only a certain amount of the most recent pots. This can be achieved separately for the 3 lists using the following parameters: postspercategory, postsperauthor, totalpoststitle. i.e.:
+
+[ACT-list show="Category" postspercategory="20"] will show only the 20 most recent posts for each category.
+
 > If you like the plugin, feel free to rate it (on the right side of this page) or [donate via PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4EH3N5XZJZCRQ). Thanks a lot! :)
 
 == Installation ==
@@ -101,6 +108,9 @@ Yes. Just use the *show* option as explained in description
 
 
 == Changelog ==
+
+= 1.8 =
+* Introduced new parameters to limit output for huge lists.
 
 = 1.7 =
 * Now all user's roles will be listed in the Author page, not only *author* roles.

@@ -70,10 +70,7 @@ function ACT_hierarchy_indexes($atts){
 function ACT_bycategory($atts) {
 	/* Start browsing categories*/
 	foreach( get_categories('hide_empty=0') as $cat ) :
-		$args = array(
-    	'category__in' => array($cat->term_id)
-	 	);
-		$my_query = new WP_Query($args); 
+	
 		if  (strpos($atts['exclude'], $cat->slug)!== false): continue;
 		endif;
 	
@@ -82,7 +79,7 @@ function ACT_bycategory($atts) {
  	 		ACT_traverse_cat_tree( $cat->term_id,$atts);
  	 	 }
 	endforeach;
- 	wp_reset_query(); //to reset all trouble done to the original query
+ 	
 
 }
 
@@ -93,6 +90,7 @@ function ACT_traverse_cat_tree( $cat, $atts ) {
  $cat_posts = get_posts( $args );
  
  if( $cat_posts ) :
+ $i = 0;
  foreach( $cat_posts as $post ) :
  
  	/* exclude admin?  */
@@ -106,7 +104,13 @@ function ACT_traverse_cat_tree( $cat, $atts ) {
  		echo "<span class='righttext'>[".get_the_author_meta( 'first_name', $post->post_author )." ".get_the_author_meta( 'last_name', $post->post_author )."]</span>";
  	endif; 
  	echo '</li>';
- 	endforeach;
+ 	$i++;
+ 	if ($atts['postspercategory'] > -1):
+ 		if ($i >= $atts['postspercategory'] ):
+ 			break;
+ 		endif;
+ 	endif;	
+ endforeach;
  endif;
  $next = get_categories('hide_empty=0&parent=' . $cat);
  
@@ -123,12 +127,18 @@ function ACT_traverse_cat_tree( $cat, $atts ) {
 
 
 function ACT_bytitle($atts) {
-	$args = array(  'posts_per_page' => -1, 
-				'orderby' => 'title' , 
-				'order' => 'ASC'); 
+	if ($atts['totalpoststitle'] > -1){
+		$args = array(  'posts_per_page' => -1);
+	}
+	else {
+		$args = array(  'posts_per_page' => -1, 
+					'orderby' => 'title' , 
+					'order' => 'ASC'); 
+	}
     $articoli = get_posts($args);
     if ($articoli):
 	echo "<ul>";
+	$i = 0;
     	foreach ($articoli as $articolo ):
     	
     	/* excluded categories  */ 
@@ -155,6 +165,12 @@ function ACT_bytitle($atts) {
  				echo "<span class='righttext'>[".$list_cats."]</span>"; 			
  			endif;
  			echo '</li>';
+ 			$i++;
+ 			if ($atts['totalpoststitle'] > -1):
+ 				if ($i >= $atts['totalpoststitle'] ):
+ 					break;
+ 				endif;
+ 			endif;	
     	endforeach;
 	echo "</ul>";
     endif;
@@ -172,19 +188,26 @@ foreach ( $autori as $user ):
  		endif;
 	}
 	/* Array of WP_User objects */
-	$args= array(
+	if ($atts['postsperauthor'] > -1){
+		$args= array(
     		'author'        =>  $user->ID, 
-		'posts_per_page' =>  -1,
+			'posts_per_page' =>  -1);	
+	}
+	else {
+		$args= array(
+    		'author'        =>  $user->ID, 
+			'posts_per_page' =>  -1,
     		'orderby'       =>  'title',
     		'order'         =>  'ASC' 
    		 );
-	
+	}
 	$author_posts=  get_posts( $args ); 
 	if (!$author_posts): continue; endif;
 	echo '<h4>'.$user->display_name.'</h4>';
 	
 	if($author_posts){
 		echo '<ul>';
+		$i = 0;
 	    foreach ($author_posts as $author_post)  {
 	    
 	    	/* excluded categories   */
@@ -201,6 +224,12 @@ foreach ( $autori as $user ):
  			$list_cats = substr($list_cats, 0, -2);
  			echo "<span class='righttext'>[".$list_cats."]</span>";
  			echo '</li>';
+ 			$i++;
+ 			if ($atts['postsperauthor'] > -1):
+ 				if ($i >= $atts['postsperauthor'] ):
+ 					break;
+ 				endif;
+ 			endif;	
 		}
 	}
 	echo '</ul>';
