@@ -31,6 +31,7 @@ defined('ABSPATH') or die("No script kiddies please!");
 define('ATP_DIR', dirname(__FILE__));
 
 require_once 'include/ACT-displayer.php';
+require_once 'include/ACT-admin.php';
 
 /* Shortcode */
 
@@ -56,12 +57,35 @@ function ACT_load_i18n(){
 	add_action( 'plugins_loaded', 'ACT_load_i18n' );
 
  
-/* Add CSS */
+/* Add CSS and scripts*/
 	
 function ACT_css(){
 		wp_register_style( 'ACT_css', plugins_url( 'ACT.css' , __FILE__ ) );
 		wp_enqueue_style( 'ACT_css' );
+		wp_register_style( 'ACT_view_css', plugins_url( 'ACT_view.css' , __FILE__ ) );
+		wp_enqueue_style( 'ACT_view_css' );
+		wp_register_script( 'ACT_view_js', plugins_url( 'ACT_view.js' , __FILE__ ) );
+		wp_enqueue_script( 'ACT_view_js');
+
 	} // function
 add_action( 'wp_enqueue_scripts', 'ACT_css' );
+
+
+/*******************************************************************************
+
+	ADD THE 'ACT List Shortcodes' ITEM TO THE TOOLS MENU
+
+*******************************************************************************/
+function ACT_tools_menu()
+{	if (function_exists('add_management_page'))
+	{	add_management_page(
+			__('ACT List Shortcodes','list-all-posts-by-ACT'),
+			__('ACT List Shortcodes','list-all-posts-by-ACT'),
+			'administrator',
+			'ACT_shortcode_helper',
+			'ACT_shortcode_helper');
+    }
+}
+add_action('admin_menu', 'ACT_tools_menu');
 
 ?>
