@@ -57,19 +57,25 @@ function ACT_load_i18n(){
 	add_action( 'plugins_loaded', 'ACT_load_i18n' );
 
  
-/* Add CSS and scripts*/
+/* Add CSS and scripts on the frontend*/
 	
 function ACT_css(){
 		wp_register_style( 'ACT_css', plugins_url( 'ACT.css' , __FILE__ ) );
 		wp_enqueue_style( 'ACT_css' );
+	} // function
+add_action( 'wp_enqueue_scripts', 'ACT_css' );
+
+
+ 
+/* Add CSS and scripts on the admin section*/
+function ACT_load_admin_css () {
 		wp_register_style( 'ACT_view_css', plugins_url( 'ACT_view.css' , __FILE__ ) );
 		wp_enqueue_style( 'ACT_view_css' );
 		wp_register_script( 'ACT_view_js', plugins_url( 'ACT_view.js' , __FILE__ ) );
 		wp_enqueue_script( 'ACT_view_js');
 
-	} // function
-add_action( 'wp_enqueue_scripts', 'ACT_css' );
-
+}
+add_action('admin_enqueue_scripts','ACT_load_admin_css');
 
 /*******************************************************************************
 

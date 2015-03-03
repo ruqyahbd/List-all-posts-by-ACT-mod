@@ -2,7 +2,7 @@
 
 function ACT_shortcode_helper() {
 ?>
-
+<div class="wrap">
 <div id="ACT_main_body" >
 	
 	
@@ -86,8 +86,8 @@ function ACT_shortcode_helper() {
 		</form>	
 		
 	</div>
-	
 	</div>
+	</div> <!-- wrap -->
 <?php
 }
 
