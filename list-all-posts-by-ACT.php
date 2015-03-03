@@ -69,6 +69,11 @@ add_action( 'wp_enqueue_scripts', 'ACT_css' );
  
 /* Add CSS and scripts on the admin section*/
 function ACT_load_admin_css () {
+ 	
+	if ( 'tools_page_ACT_shortcode_helper' != $hook ) {
+		return;
+		}
+
 		wp_register_style( 'ACT_view_css', plugins_url( 'ACT_view.css' , __FILE__ ) );
 		wp_enqueue_style( 'ACT_view_css' );
 		wp_register_script( 'ACT_view_js', plugins_url( 'ACT_view.js' , __FILE__ ) );
