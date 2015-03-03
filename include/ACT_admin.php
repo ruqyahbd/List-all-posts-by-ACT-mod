@@ -8,7 +8,7 @@ function ACT_shortcode_helper() {
 	
 	<div id="form_container">
 	
-		<h1><a>List Posts by Author, nested Categories and Titles</a></h1>
+				<div id="ACT_topbar">&nbsp;</div>
 		<form id="form_978810" class="appnitro"  method="post" action="">
 					<div class="form_description">
 			<h2>List Posts by Author, nested Categories and Titles</h2>

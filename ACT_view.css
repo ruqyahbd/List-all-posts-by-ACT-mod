@@ -24,23 +24,6 @@
 	width:650px;
 }
 
-#footer
-{
-	width:640px;
-	clear:both;
-	color:#999999;
-	text-align:center;
-	width:640px;
-	padding-bottom: 15px;
-	font-size: 85%;
-}
-
-#footer a{
-	color:#999999;
-	text-decoration: none;
-	border-bottom: 1px dotted #999999;
-}
-
 #bottom
 {
 	display:block;
@@ -56,20 +39,12 @@ form.appnitro
 }
 
 /**** Logo Section  *****/
-h1
+#ACT_topbar
 {
 	background-color:#4B75B3;
 	margin:0;
-	min-height:0;
 	padding:0;
 	text-decoration:none;
-	text-indent:-8000px;
-	
-}
-
-h1 a
-{
-	
 	display:block;
 	height:100%;
 	min-height:40px;
