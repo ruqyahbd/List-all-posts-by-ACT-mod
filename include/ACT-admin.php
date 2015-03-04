@@ -10,7 +10,7 @@ function ACT_shortcode_helper() {
 	
 				<div id="ACT_topbar">&nbsp;</div>
 
-		<form id="form_978810" class="appnitro"  method="post" action="">
+		<form id="ACT_form" class="appnitro"  method="post" action="">
 					<div class="form_description">
 			<div class="ACT_h2">List All Posts by Author, nested Categories and Titles</div>
 			<p><?php echo __('Automatic shortcode generator','list-all-posts-by-ACT');?></p>
@@ -25,7 +25,7 @@ function ACT_shortcode_helper() {
 			<input id="show_cat" name="show_cat" class="element checkbox" type="checkbox" value="1" checked/>
 <label class="choice" for="show_cat">Categories</label>
 <input id="show_aut" name="show_aut" class="element checkbox" type="checkbox" value="1" />
-<label class="choice" for="show_aut">Authors</label>
+<label class="choice" id="aut_label" for="show_aut">Authors</label>
 <input id="show_tit" name="show_tit" class="element checkbox" type="checkbox" value="1" />
 <label class="choice" for="show_tit">Titles</label>
 
@@ -52,17 +52,17 @@ function ACT_shortcode_helper() {
 		<label class="description" >Categories (0 means no limit) </label>
 		<div>
 			<input id="limit_cat" name="limit_cat" class="element text small" type="number" maxlength="4" value="0"/> 
-		</div><p class="guidelines" id="guide_3"><small>Limit the Categories list to only the "x" most recent for every category</small></p> 
+		</div><p class="guidelines" id="guide_3"><small>Limit the Categories list to only the "x" most recent for every category.</small></p> 
 		</li>		<li id="li_7" >
 		<label class="description" >Authors (0 means no limit) </label>
 		<div>
 			<input id="limit_aut" name="limit_aut" class="element text small" type="number" maxlength="4" value="0"/> 
-		</div><p class="guidelines" id="guide_7"><small>Limit the Authors list to only the "x" most recent for every author</small></p> 
+		</div><p class="guidelines" id="guide_7"><small>Limit the Authors list to only the "x" most recent for every author.</small></p> 
 		</li>		<li id="li_8" >
 		<label class="description" >Titles (0 means no limit) </label>
 		<div>
 			<input id="limit_tit" name="limit_tit" class="element text small" type="number" maxlength="4" value="0"/> 
-		</div><p class="guidelines" id="guide_8"><small>Limit the Titles list to only "x" most recent ones.</small></p> 
+		</div><p class="guidelines" id="guide_8"><small>Limit the Titles list to only the "x" most recent ones.</small></p> 
 		</li>		
 		</div>
 		
@@ -78,55 +78,20 @@ function ACT_shortcode_helper() {
 		</div>
 			
 					<li class="buttons" style="clear:both">
-			    <input type="hidden" name="form_id" value="978810" />
+			    <input type="hidden" name="action" value="ACT_processform" />
 			    
 				<input id="saveForm" class="button_text" type="submit" name="submit" value="Generate Shortcode" />
 		</li>
 			</ul>
 		</form>	
-		
+		<div id="feedback"></div>
 	</div>
 	</div>
+	<div id="ACT_wait"></div>
 	</div> <!-- wrap -->
 <?php
 }
 
-/*
-function ACT_list_categories() {
-
-$args = array(
-  'hide_empty' => '0',
-  );
-  $i=0;
-  $categories = get_categories($args);
-  foreach($categories as $category) { 
-  
-  	if (!$category->parent) {
-  		$i++;
-  		echo ('<input id="cat_'.$i.'" name="cat_'.$i.'" class="element checkbox" type = "checkbox" value="'.$category->slug.'" />');
-  		echo ('<label class="choice" for="cat_'.$i.'">'.$category->name.'</label>');
-  		$i = ACT_get_child_cats( $category->term_id,$i);
-  		}
-  		
-  	}
-  	echo ('<input type="hidden" name="total_cats" value="'.$i.'" />');
-}
-
-function ACT_get_child_cats($cat, $k) {
-	$next = get_categories('hide_empty=0&parent=' . $cat);
-	 if( $next ) :
- 		foreach( $next as $category ) :
- 			$k++;
- 			echo ('<input id="cat_'.$k.'" name="cat_'.$k.'" class="element checkbox" type = "checkbox" value="'.$category->slug.'" />');
-  		echo ('<label class="choice" for="cat_'.$k.'">'.$category->name.'</label>');
-
- 			$k = ACT_get_child_cats( $category->term_id, $k);
- 		endforeach;
- 	endif;
-	return $k;
-}
-
-*/
 
 function ACT_list_categories() {
 
@@ -140,11 +105,10 @@ $args = array(
   
   	if (!$category->parent) {
   		$i++;
-  		echo ('<input id="cat_'.$i.'" name="cat_'.$i.'" class="element checkbox" type = "checkbox" value="'.$category->slug.'" />');
-  		echo ('<label class="choice" for="cat_'.$i.'">'.$category->name.'</label>');
+  		echo ('<input id=cat[] name=cat[] class="element checkbox" type = "checkbox" value="'.$category->slug.'" />');
+  		echo ('<label class="choice" for=cat[]>'.$category->name.'</label>');
   		$i = ACT_get_child_cats( $category->term_id,$i," ");
-  		}
-  		
+  		}		
   	}
   	echo ('<input type="hidden" name="total_cats" value="'.$i.'" />');
 }
@@ -155,11 +119,81 @@ function ACT_get_child_cats($cat, $k,$level) {
 	 	$level .= "&#8212;";
  		foreach( $next as $category ) :
  			$k++;
- 			echo ('<input id="cat_'.$k.'" name="cat_'.$k.'" class="element checkbox" type = "checkbox" value="'.$category->slug.'" />');
-  		echo ('<label class="choice" for="cat_'.$k.'"> '.$level.' '.$category->name.'</label>');
+ 			echo ('<input id=cat[] name=cat[] class="element checkbox" type = "checkbox" value="'.$category->slug.'" />');
+  		echo ('<label class="choice" for=cat[]> '.$level.' '.$category->name.'</label>');
 
  			$k = ACT_get_child_cats( $category->term_id, $k, $level);
  		endforeach;
  	endif;
 	return $k;
+}
+
+function ACT_processform() {
+	
+	$sc = "[ACT-list";
+	
+	/* Show List */
+	$showlist= array();
+	if ($_POST['show_cat']) {
+		$showlist[0] ="Category";
+	}
+	if ($_POST['show_aut']) {
+		$showlist[1] ="Author";
+	}
+	
+	if ($_POST['show_tit']) {
+		$showlist[2] ="Title";
+	}
+
+	$showlist_string = implode(",", $showlist);
+	$sc = $sc." show='".$showlist_string."'";
+
+
+	/** singleuser **/
+	if ($_POST['single']) {
+		$sc = $sc." singleuser=1";
+	}
+	
+		/** is admin included? **/
+	if ($_POST['include_admin']) {
+		$sc = $sc." admin=1";
+	}
+	
+		/** Limit output **/
+	if ($_POST['limit_cat']) {
+		if ($_POST['limit_cat']>0) {
+			$sc = $sc." postspercategory=".$_POST['limit_cat'];
+		}
+	}
+	
+	if ($_POST['limit_aut']) {
+		if ($_POST['limit_aut']>0) {
+			$sc = $sc." postsperauthor=".$_POST['limit_aut'];
+		}
+	}
+	
+	if ($_POST['limit_tit']) {
+		if ($_POST['limit_tit']>0) {
+			$sc = $sc." totalpoststitle=".$_POST['limit_tit'];
+		}
+	}
+
+	/** Excluded Categories **/
+	$cat_array = array();
+	$cat=$_POST['cat'];
+	if ($cat) {
+		while (list ($key,$val) = @each ($cat)) {
+			array_push($cat_array,$val);
+		}
+		$cat_string = implode(",",$cat_array);
+		$sc = $sc." exclude='".$cat_string."'";
+	}
+	
+	$sc = $sc."]";	
+	echo ("This is your shortcode: \n\n");
+	echo $sc."\n\n";
+	echo ("Copy & Paste it into your page");
+	
+
+	die();
 }

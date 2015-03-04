@@ -69,16 +69,18 @@ add_action( 'wp_enqueue_scripts', 'ACT_css' );
  
 /* Add CSS and scripts on the admin section*/
 function ACT_load_admin_css ($hook) {
- 	
+	
 	if ( 'tools_page_ACT_shortcode_helper' != $hook ) {
 		return;
-		}
-
-		wp_register_style( 'ACT_view_css', plugins_url( 'ACT_view.css' , __FILE__ ) );
-		wp_enqueue_style( 'ACT_view_css' );
-		wp_register_script( 'ACT_view_js', plugins_url( 'ACT_view.js' , __FILE__ ) );
-		wp_enqueue_script( 'ACT_view_js');
-
+	}
+	
+	wp_register_style( 'ACT_view_css', plugins_url( 'ACT_view.css' , __FILE__ ) );
+	wp_enqueue_style( 'ACT_view_css' );
+	wp_register_script( 'ACT_view_js', plugins_url( 'ACT_view.js' , __FILE__ ) );
+	wp_enqueue_script( 'ACT_view_js');
+	wp_register_script( 'ACT_form_js', plugins_url( 'ACT_form.js' , __FILE__ ) ,array( 'jquery' ));
+	wp_enqueue_script( 'ACT_form_js');
+	
 }
 add_action('admin_enqueue_scripts','ACT_load_admin_css');
 
@@ -98,5 +100,13 @@ function ACT_tools_menu()
     }
 }
 add_action('admin_menu', 'ACT_tools_menu');
+
+/***********************************************************************
+
+	HOOK AJAX
+	********************************************************************/
+add_action('wp_ajax_ACT_processform', 'ACT_processform');
+
+
 
 ?>

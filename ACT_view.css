@@ -1,3 +1,20 @@
+#ACT_wait {
+    display:    block;
+    position:   fixed;
+	z-index:    1000;
+	top:        0;
+	left:       0;
+	height:     100%;
+	width:      100%;
+	background: rgba( 255, 255, 255, .8 ) 
+        	    url('FhHRx.gif') 
+        	    50% 50% 
+        	    no-repeat;
+	opacity: 0.80;
+	-ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity = 80);
+	filter: alpha(opacity = 80);
+	}
+
 #ACT_main_body
 {
 	background:#CDDCEC;
@@ -217,7 +234,7 @@ form hr
 
 form li.section_break
 {
-
+	//border-top:1px dotted #ccc;
 	margin-top:9px;
 	padding-bottom:0;
 	padding-left:9px;
