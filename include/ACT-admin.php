@@ -15,14 +15,14 @@ function ACT_shortcode_helper() {
 			<div class="ACT_h2">List All Posts by Author, nested Categories and Titles</div>
 			<p><?php echo __('Automatic shortcode generator','list-all-posts-by-ACT');?></p>
 		</div>	
-		<div id="first_col" style="width: 60%; float:left; display:inline;">
+		<div id="first_col" style="width: 59%; float:left; display:inline;">
 							
 			<ul >
 			
 			<li id="li_2" >
 		<label class="description" >Select what list(s) to show: </label>
 		<span>
-			<input id="show_cat" name="show_cat" class="element checkbox" type="checkbox" value="1" />
+			<input id="show_cat" name="show_cat" class="element checkbox" type="checkbox" value="1" checked/>
 <label class="choice" for="show_cat">Categories</label>
 <input id="show_aut" name="show_aut" class="element checkbox" type="checkbox" value="1" />
 <label class="choice" for="show_aut">Authors</label>
@@ -66,12 +66,12 @@ function ACT_shortcode_helper() {
 		</li>		
 		</div>
 		
-		<div id="second_col" style="float:left; width:39%; display:inline"> 
-		<li id="li_9" >
+		<div id="second_col" style="float:left; width:40%; display:inline"> 
+		<li id="li_9" style="width:99%" >
 		<label class="description" >Categories to be EXCLUDED <br />(posts in selected Categories won't be listed) </label>
 		<span>
-			<input id="element_9_1" name="element_9_1" class="element checkbox" type="checkbox" value="1" />
-<label class="choice" for="element_9_1">First option</label>
+		<br />
+			<?php ACT_list_categories(); ?>
 
 		</span><p class="guidelines" id="guide_9"><small>Exclude posts from selected Categories</small></p> 
 		</li>
@@ -91,3 +91,75 @@ function ACT_shortcode_helper() {
 <?php
 }
 
+/*
+function ACT_list_categories() {
+
+$args = array(
+  'hide_empty' => '0',
+  );
+  $i=0;
+  $categories = get_categories($args);
+  foreach($categories as $category) { 
+  
+  	if (!$category->parent) {
+  		$i++;
+  		echo ('<input id="cat_'.$i.'" name="cat_'.$i.'" class="element checkbox" type = "checkbox" value="'.$category->slug.'" />');
+  		echo ('<label class="choice" for="cat_'.$i.'">'.$category->name.'</label>');
+  		$i = ACT_get_child_cats( $category->term_id,$i);
+  		}
+  		
+  	}
+  	echo ('<input type="hidden" name="total_cats" value="'.$i.'" />');
+}
+
+function ACT_get_child_cats($cat, $k) {
+	$next = get_categories('hide_empty=0&parent=' . $cat);
+	 if( $next ) :
+ 		foreach( $next as $category ) :
+ 			$k++;
+ 			echo ('<input id="cat_'.$k.'" name="cat_'.$k.'" class="element checkbox" type = "checkbox" value="'.$category->slug.'" />');
+  		echo ('<label class="choice" for="cat_'.$k.'">'.$category->name.'</label>');
+
+ 			$k = ACT_get_child_cats( $category->term_id, $k);
+ 		endforeach;
+ 	endif;
+	return $k;
+}
+
+*/
+
+function ACT_list_categories() {
+
+$args = array(
+  'hide_empty' => '0',
+  'child_of' =>  '0'
+  );
+  $i=0;
+  $categories = get_categories($args);
+  foreach($categories as $category) { 
+  
+  	if (!$category->parent) {
+  		$i++;
+  		echo ('<input id="cat_'.$i.'" name="cat_'.$i.'" class="element checkbox" type = "checkbox" value="'.$category->slug.'" />');
+  		echo ('<label class="choice" for="cat_'.$i.'">'.$category->name.'</label>');
+  		$i = ACT_get_child_cats( $category->term_id,$i," ");
+  		}
+  		
+  	}
+  	echo ('<input type="hidden" name="total_cats" value="'.$i.'" />');
+}
+
+function ACT_get_child_cats($cat, $k,$level) {
+	$next = get_categories('hide_empty=0&parent=' . $cat);
+	 if( $next ) :
+	 	$level .= "&#8212;";
+ 		foreach( $next as $category ) :
+ 			$k++;
+ 			echo ('<input id="cat_'.$k.'" name="cat_'.$k.'" class="element checkbox" type = "checkbox" value="'.$category->slug.'" />');
+  		echo ('<label class="choice" for="cat_'.$k.'"> '.$level.' '.$category->name.'</label>');
+
+ 			$k = ACT_get_child_cats( $category->term_id, $k, $level);
+ 		endforeach;
+ 	endif;
+	return $k;
+}
