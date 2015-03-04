@@ -3,21 +3,23 @@
 function ACT_shortcode_helper() {
 ?>
 <div class="wrap">
-	<h2>List Posts by Author, nested Categories and Titles</h2>
-	Automatic shortcode generator
-<div id="ACT_main_body" >
+	<div id="ACT_main_body" >
 	
 	
 	<div id="form_container">
 	
 				<div id="ACT_topbar">&nbsp;</div>
+
 		<form id="form_978810" class="appnitro"  method="post" action="">
-				
+					<div class="form_description">
+			<div class="ACT_h2">List Posts by Author, nested Categories and Titles</div>
+			<p>Automatic shortcode generator</p>
+		</div>	
 		<div id="first_col" style="width: 60%; float:left; display:inline;">
 							
 			<ul >
 			
-				<li id="li_2" >
+			<li id="li_2" >
 		<label class="description" >Select what list(s) to show: </label>
 		<span>
 			<input id="show_cat" name="show_cat" class="element checkbox" type="checkbox" value="1" />

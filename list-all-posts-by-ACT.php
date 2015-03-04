@@ -68,7 +68,7 @@ add_action( 'wp_enqueue_scripts', 'ACT_css' );
 
  
 /* Add CSS and scripts on the admin section*/
-function ACT_load_admin_css () {
+function ACT_load_admin_css ($hook) {
  	
 	if ( 'tools_page_ACT_shortcode_helper' != $hook ) {
 		return;
