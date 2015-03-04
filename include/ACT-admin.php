@@ -12,8 +12,8 @@ function ACT_shortcode_helper() {
 
 		<form id="form_978810" class="appnitro"  method="post" action="">
 					<div class="form_description">
-			<div class="ACT_h2">List Posts by Author, nested Categories and Titles</div>
-			<p>Automatic shortcode generator</p>
+			<div class="ACT_h2">List All Posts by Author, nested Categories and Titles</div>
+			<p><?php echo __('Automatic shortcode generator','list-all-posts-by-ACT');?></p>
 		</div>	
 		<div id="first_col" style="width: 60%; float:left; display:inline;">
 							
