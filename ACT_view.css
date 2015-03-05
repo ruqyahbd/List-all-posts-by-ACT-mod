@@ -15,6 +15,14 @@
 	filter: alpha(opacity = 80);
 	}
 
+#ACT_feedback {
+	display: block;
+	border: 1px solid #333;
+	margin: 0 20px 20px;
+	text-align:center;
+	background-color: #ccc;
+	
+}
 #ACT_main_body
 {
 	background:#CDDCEC;
@@ -22,7 +30,7 @@
 	font-size:small;
 	margin:0;
 	text-align:center;
-	border: 1px solid #333
+	border: 1px solid #333;
 }
 
 #form_container

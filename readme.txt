@@ -86,7 +86,7 @@ Page#3 (or tab#3)
 
 **Limit the number of posts in the lists**
 
-If you have a large numbers of posts (>2,000), it could be convenient to limit the number of posts in the lists, including only a certain amount of the most recent pots. This can be achieved separately for the 3 lists using the following parameters: postspercategory, postsperauthor, totalpoststitle. i.e.:
+If you have a large numbers of posts (>2,000), it could be convenient to limit the number of posts in the lists, including only a certain amount of the most recent posts. This can be achieved separately for the 3 lists using the following parameters: postspercategory, postsperauthor, totalpoststitle. i.e.:
 
 [ACT-list show="Category" postspercategory="20"] will show only the 20 most recent posts for each category.
 

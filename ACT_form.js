@@ -1,6 +1,7 @@
 jQuery(document).ready( function () {
 
 	 jQuery('#ACT_wait').hide();
+	jQuery('#ACT_feedback').hide();
 	jQuery('#ACT_form').submit(ajaxSubmit);
 
 function ajaxSubmit(){
@@ -14,10 +15,10 @@ function ajaxSubmit(){
 		url: ajaxurl,
 		data: ACT_shortcode_form,
 		success:function(message){
+			jQuery('#ACT_feedback').show();
 			 jQuery('#ACT_wait').hide();
-			 jQuery("#feedback").replaceWith(message);
-		
-			//alert("The shortcode has been generated at the bottom of this page.\nThank you!");
+			 jQuery("#ACT_feedback").html(message);
+			alert(ACT_obj.alert_end);
 		}
 	});
 	
@@ -43,7 +44,7 @@ function ajaxSubmit(){
 		if ((jQuery('#show_cat').prop("checked")==false) &&
 			(jQuery('#show_aut').prop("checked")==false) &&
 			(jQuery('#show_tit').prop("checked")==false)) {
-				alert ("You must select at least one list to show!");
+				alert (ACT_obj.alert_showlist);
 				return false;
 			}
 		return true;

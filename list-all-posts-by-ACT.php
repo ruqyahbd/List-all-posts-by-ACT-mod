@@ -79,7 +79,14 @@ function ACT_load_admin_css ($hook) {
 	wp_register_script( 'ACT_view_js', plugins_url( 'ACT_view.js' , __FILE__ ) );
 	wp_enqueue_script( 'ACT_view_js');
 	wp_register_script( 'ACT_form_js', plugins_url( 'ACT_form.js' , __FILE__ ) ,array( 'jquery' ));
+	// Localize the script with new data
+	$translation_array = array(
+	'alert_showlist' => __( 'You must select at least one list to show!', 'list-all-posts-by-ACT' ),
+	'alert_end' => __( 'The shortcode has been generated. You\'ll find it at the bottom of this page.', 'list-all-posts-by-ACT' )
+);
 	wp_enqueue_script( 'ACT_form_js');
+	wp_localize_script( 'ACT_form_js', 'ACT_obj', $translation_array );
+
 	
 }
 add_action('admin_enqueue_scripts','ACT_load_admin_css');
