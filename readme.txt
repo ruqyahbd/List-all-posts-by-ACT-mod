@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: nested categories, posts, authors, titles
 Requires at least: 4.0.1
 Tested up to: 4.1
-Stable tag: 1.8.1
+Stable tag: 2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,7 +35,11 @@ Output grouped by Category will look like:
 			...
 </code></pre>
 
-**Default usage:**
+**Shortcode generator**
+
+The plugin installs a new menu *ACT List Shortcodes* in Admin->Tools. The tool is a helper to automatically generate the required shortcode. It will parse the options and display the string to be copied and pasted into any page.  
+
+**Default manual usage:**
 
 [ACT-list]
 
@@ -96,7 +100,7 @@ If you have a large numbers of posts (>2,000), it could be convenient to limit t
 
 1. Upload `list-all-posts-by-ACT` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Place [ACT-list] in a page
+3. Use the *Admin->Tools->ACT List Shortcodes* form to generate the shortcode.
 
 == Frequently Asked Questions ==
 
@@ -104,10 +108,19 @@ If you have a large numbers of posts (>2,000), it could be convenient to limit t
    Yes, all lists are included in *ATC-wrapper* div. You can override it in your child theme style.css
    
 = Can I remove the selector, so that the plugin will display only one list? =
-Yes. Just use the *show* option as explained in description
+Yes. Just use the *show* option to display only one list, as explained in description
+
+
+== Screenshots ==
+
+1. The Shortcode generator in the Tools admin backend
 
 
 == Changelog ==
+
+= 2.0 =
+* Introduced new admin backend tool: shortcode automatic generator form
+* Added Dutch translation (credits to Rolf van Gelder)
 
 = 1.8.1 =
 * Added Norwegian translation.

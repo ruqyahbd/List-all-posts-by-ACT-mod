@@ -13,7 +13,7 @@ function ACT_shortcode_helper() {
 		<form id="ACT_form" class="appnitro"  method="post" action="">
 					<div class="form_description">
 			<div class="ACT_h2">List All Posts by Author, nested Categories and Titles</div>
-			<p><?php echo __('Automatic shortcode generator','list-all-posts-by-ACT');?></p>
+			<p><?php echo _e('Automatic shortcode generator','list-all-posts-by-ACT');?></p>
 		</div>	
 		<div id="first_col" style="width: 59%; float:left; display:inline;">
 							
@@ -192,7 +192,7 @@ function ACT_processform() {
 	$sc = $sc."]";	
 	echo __('This is your shortcode:','list-all-posts-by-ACT');
 	echo ("<br /><br />");
-	echo "<b>".$sc."</b><br /><br />";
+	echo "<code style='background-color:#eee'>".$sc."</code><br /><br />";
 	echo __('Copy & Paste it into your page','list-all-posts-by-ACT');
 	echo ("<br />");
 	
