@@ -85,34 +85,43 @@ function ACT_bycategory($atts) {
 
 
 function ACT_traverse_cat_tree( $cat, $atts ) {
- 
- $args = array('category__in' => array( $cat ), 'numberposts' => -1);
- $cat_posts = get_posts( $args );
- 
- if( $cat_posts ) :
- $i = 0;
- foreach( $cat_posts as $post ) :
- 
- 	/* exclude admin?  */
- 	if (!$atts['admin']) {
- 		if (is_super_admin($post->post_author)) : continue;
- 		endif;
- 	}
- 	echo '<li class="subpost">';
- 	echo '<a href="' . get_permalink( $post->ID ) . '">' . $post->post_title . '</a>';
- 	if (!($atts['singleuser'])):
- 		echo "<span class='righttext'>[".get_the_author_meta( 'first_name', $post->post_author )." ".get_the_author_meta( 'last_name', $post->post_author )."]</span>";
- 	endif; 
- 	echo '</li>';
- 	$i++;
- 	if ($atts['postspercategory'] > -1):
- 		if ($i >= $atts['postspercategory'] ):
- 			break;
- 		endif;
- 	endif;	
- endforeach;
- endif;
- $next = get_categories('hide_empty=0&parent=' . $cat);
+	$postargs = array(
+		'public'   => true,
+		'_builtin' => false
+	);
+	$post_types = get_post_types( $postargs);
+
+	array_push($post_types, 'post'); 
+	$args = array('category__in' => array( $cat ), 'numberposts' => -1, 'post_type' => $post_types);
+	
+	$cat_posts = get_posts( $args );
+	
+	if( $cat_posts ) :
+	$i = 0;
+	foreach( $cat_posts as $post ) :
+	
+	/* exclude admin?  */
+	if (!$atts['admin']) {
+		if (is_super_admin($post->post_author)) : continue;
+		endif;
+	}
+	echo '<li class="subpost">';
+	echo '<a href="' . get_permalink( $post->ID ) . '">' . $post->post_title . '</a>';
+	if (!($atts['singleuser'])):
+	echo "<span class='righttext'>[".get_the_author_meta( 'first_name', $post->post_author )." ".get_the_author_meta( 'last_name', $post->post_author )."]</span>";
+	endif;
+	
+	echo '</li>';
+	$i++;
+	if ($atts['postspercategory'] > -1):
+	if ($i >= $atts['postspercategory'] ):
+	break;
+	endif;
+	endif;
+	
+	endforeach;
+	endif;
+	$next = get_categories('hide_empty=0&parent=' . $cat);
  
  if( $next ) :
  foreach( $next as $cat ) :
@@ -127,12 +136,21 @@ function ACT_traverse_cat_tree( $cat, $atts ) {
 
 
 function ACT_bytitle($atts) {
+	$postargs = array(
+		'public'   => true,
+		'_builtin' => false
+	);
+	$post_types = get_post_types( $postargs);
+
+	array_push($post_types, 'post'); 
+
 	if ($atts['totalpoststitle'] > -1){
-		$args = array(  'posts_per_page' => -1);
+		$args = array(  'posts_per_page' => -1, 'post_type' => $post_types);
 	}
 	else {
 		$args = array(  'posts_per_page' => -1, 
 					'orderby' => 'title' , 
+					'post_type' => $post_types,  
 					'order' => 'ASC'); 
 	}
     $articoli = get_posts($args);
@@ -188,15 +206,25 @@ foreach ( $autori as $user ):
  		endif;
 	}
 	/* Array of WP_User objects */
+	$postargs = array(
+		'public'   => true,
+		'_builtin' => false
+	);
+	$post_types = get_post_types( $postargs);
+
+	array_push($post_types, 'post'); 
+
 	if ($atts['postsperauthor'] > -1){
 		$args= array(
     		'author'        =>  $user->ID, 
+			'post_type'	  => $post_types,
 			'posts_per_page' =>  -1);	
 	}
 	else {
 		$args= array(
     		'author'        =>  $user->ID, 
 			'posts_per_page' =>  -1,
+			'post_type'		=> $post_types,
     		'orderby'       =>  'title',
     		'order'         =>  'ASC' 
    		 );
