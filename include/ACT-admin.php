@@ -13,74 +13,74 @@ function ACT_shortcode_helper() {
 		<form id="ACT_form" class="appnitro"  method="post" action="">
 					<div class="form_description">
 			<div class="ACT_h2">List All Posts by Author, nested Categories and Titles</div>
-			<p><?php echo _e('Automatic shortcode generator','list-all-posts-by-ACT');?></p>
+			<p><?php echo _e('Automatic shortcode generator','list-all-posts-by-authors-nested-categories-and-titles');?></p>
 		</div>	
 		<div id="first_col" style="width: 59%; float:left; display:inline;">
 							
 			<ul >
 			
 			<li id="li_2" >
-		<label class="description" ><?php echo __('Select what list(s) to show:','list-all-posts-by-ACT');?></label>
+		<label class="description" ><?php echo __('Select what list(s) to show:','list-all-posts-by-authors-nested-categories-and-titles');?></label>
 		<span>
 			<input id="show_cat" name="show_cat" class="element checkbox" type="checkbox" value="1" checked/>
-<label class="choice" for="show_cat"><?php echo __('Categories','list-all-posts-by-ACT');?></label>
+<label class="choice" for="show_cat"><?php echo __('Categories','list-all-posts-by-authors-nested-categories-and-titles');?></label>
 <input id="show_aut" name="show_aut" class="element checkbox" type="checkbox" value="1" />
-<label class="choice" id="aut_label" for="show_aut"><?php echo __('Authors','list-all-posts-by-ACT');?></label>
+<label class="choice" id="aut_label" for="show_aut"><?php echo __('Authors','list-all-posts-by-authors-nested-categories-and-titles');?></label>
 <input id="show_tit" name="show_tit" class="element checkbox" type="checkbox" value="1" />
-<label class="choice" for="show_tit"><?php echo __('Titles','list-all-posts-by-ACT');?></label>
+<label class="choice" for="show_tit"><?php echo __('Titles','list-all-posts-by-authors-nested-categories-and-titles');?></label>
 
-		</span><p class="guidelines" id="guide_2"><small><?php echo __('Selecting more than one choice will include a selector dropdown box in your page.','list-all-posts-by-ACT');?></small></p> 
+		</span><p class="guidelines" id="guide_2"><small><?php echo __('Selecting more than one choice will include a selector dropdown box in your page.','list-all-posts-by-authors-nested-categories-and-titles');?></small></p> 
 		</li>		<li id="li_4" >
-		<label class="description"><?php echo __('Is this a single user site?','list-all-posts-by-ACT');?> </label>
+		<label class="description"><?php echo __('Is this a single user site?','list-all-posts-by-authors-nested-categories-and-titles');?> </label>
 		<span>
 			<input id="single" name="single" class="element checkbox" type="checkbox" value="1" />
-<label class="choice" for="single"><?php echo __('Yes','list-all-posts-by-ACT');?></label>
+<label class="choice" for="single"><?php echo __('Yes','list-all-posts-by-authors-nested-categories-and-titles');?></label>
 
-		</span><p class="guidelines" id="guide_4"><small><?php echo __('This option is for websites with a single author. It removes grouping by Authors and any author name in the list.','list-all-posts-by-ACT');?> </small></p> 
+		</span><p class="guidelines" id="guide_4"><small><?php echo __('This option is for websites with a single author. It removes grouping by Authors and any author name in the list.','list-all-posts-by-authors-nested-categories-and-titles');?> </small></p> 
 		</li>		<li id="li_5" >
-		<label class="description" ><?php echo __('Include admin\'s posts?','list-all-posts-by-ACT');?> </label>
+		<label class="description" ><?php echo __('Include admin\'s posts?','list-all-posts-by-authors-nested-categories-and-titles');?> </label>
 		<span>
 			<input id="include_admin" name="include_admin" class="element checkbox" type="checkbox" value="1" />
-<label class="choice" for="include_admin"><?php echo __('Yes','list-all-posts-by-ACT');?></label>
+<label class="choice" for="include_admin"><?php echo __('Yes','list-all-posts-by-authors-nested-categories-and-titles');?></label>
 
 		</span> 
 		</li>		<li class="section_break">
 
-			<label class="description"><?php echo __('Limit number of posts to max:','list-all-posts-by-ACT');?></label>
-			<p><?php echo __('Limit the number of posts in the lists, including only<br /> a certain number of the most recent posts.<br />This is achieved separately for the 3 lists.','list-all-posts-by-ACT');?></p>
+			<label class="description"><?php echo __('Limit number of posts to max:','list-all-posts-by-authors-nested-categories-and-titles');?></label>
+			<p><?php echo __('Limit the number of posts in the lists, including only<br /> a certain number of the most recent posts.<br />This is achieved separately for the 3 lists.','list-all-posts-by-authors-nested-categories-and-titles');?></p>
 		</li>		<li id="li_3" >
-		<label class="description" ><?php echo __('Categories (0 means no limit)','list-all-posts-by-ACT');?> </label>
+		<label class="description" ><?php echo __('Categories (0 means no limit)','list-all-posts-by-authors-nested-categories-and-titles');?> </label>
 		<div>
 			<input id="limit_cat" name="limit_cat" class="element text small" type="number" maxlength="4" value="0"/> 
-		</div><p class="guidelines" id="guide_3"><small><?php echo __('Limit the Categories list to only the "x" most recent for every category.','list-all-posts-by-ACT');?></small></p> 
+		</div><p class="guidelines" id="guide_3"><small><?php echo __('Limit the Categories list to only the "x" most recent for every category.','list-all-posts-by-authors-nested-categories-and-titles');?></small></p> 
 		</li>		<li id="li_7" >
-		<label class="description" ><?php echo __('Authors (0 means no limit)','list-all-posts-by-ACT');?> </label>
+		<label class="description" ><?php echo __('Authors (0 means no limit)','list-all-posts-by-authors-nested-categories-and-titles');?> </label>
 		<div>
 			<input id="limit_aut" name="limit_aut" class="element text small" type="number" maxlength="4" value="0"/> 
-		</div><p class="guidelines" id="guide_7"><small><?php echo __('Limit the Authors list to only the "x" most recent for every author.','list-all-posts-by-ACT');?></small></p> 
+		</div><p class="guidelines" id="guide_7"><small><?php echo __('Limit the Authors list to only the "x" most recent for every author.','list-all-posts-by-authors-nested-categories-and-titles');?></small></p> 
 		</li>		<li id="li_8" >
-		<label class="description" ><?php echo __('Titles (0 means no limit)','list-all-posts-by-ACT');?> </label>
+		<label class="description" ><?php echo __('Titles (0 means no limit)','list-all-posts-by-authors-nested-categories-and-titles');?> </label>
 		<div>
 			<input id="limit_tit" name="limit_tit" class="element text small" type="number" maxlength="4" value="0"/> 
-		</div><p class="guidelines" id="guide_8"><small><?php echo __('Limit the Titles list to only the "x" most recent ones.','list-all-posts-by-ACT');?></small></p> 
+		</div><p class="guidelines" id="guide_8"><small><?php echo __('Limit the Titles list to only the "x" most recent ones.','list-all-posts-by-authors-nested-categories-and-titles');?></small></p> 
 		</li>		
 		</div>
 		
 		<div id="second_col" style="float:left; width:40%; display:inline"> 
 		<li id="li_9" style="width:99%" >
-		<label class="description" ><?php echo __('Categories to be EXCLUDED <br />(posts in selected Categories won\'t be listed)','list-all-posts-by-ACT');?></label>
+		<label class="description" ><?php echo __('Categories to be EXCLUDED <br />(posts in selected Categories won\'t be listed)','list-all-posts-by-authors-nested-categories-and-titles');?></label>
 		<span>
 		<br />
 			<?php ACT_list_categories(); ?>
 
-		</span><p class="guidelines" id="guide_9"><small><?php echo __('Exclude posts from selected Categories','list-all-posts-by-ACT');?> </small></p> 
+		</span><p class="guidelines" id="guide_9"><small><?php echo __('Exclude posts from selected Categories','list-all-posts-by-authors-nested-categories-and-titles');?> </small></p> 
 		</li>
 		</div>
 			
 					<li class="buttons" style="clear:both">
 			    <input type="hidden" name="action" value="ACT_processform" />
 			    
-				<input id="saveForm" class="button_text" type="submit" name="submit" value="<?php echo __('Generate Shortcode','list-all-posts-by-ACT');?>" />
+				<input id="saveForm" class="button_text" type="submit" name="submit" value="<?php echo __('Generate Shortcode','list-all-posts-by-authors-nested-categories-and-titles');?>" />
 		</li>
 			</ul>
 		</form>	
@@ -190,10 +190,10 @@ function ACT_processform() {
 	}
 	
 	$sc = $sc."]";	
-	echo __('This is your shortcode:','list-all-posts-by-ACT');
+	echo __('This is your shortcode:','list-all-posts-by-authors-nested-categories-and-titles');
 	echo ("<br /><br />");
 	echo "<code style='background-color:#eee'>".$sc."</code><br /><br />";
-	echo __('Copy & Paste it into your page','list-all-posts-by-ACT');
+	echo __('Copy & Paste it into your page','list-all-posts-by-authors-nested-categories-and-titles');
 	echo ("<br />");
 	
 

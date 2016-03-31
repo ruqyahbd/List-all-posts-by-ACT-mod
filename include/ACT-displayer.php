@@ -4,7 +4,7 @@
 *
 * 
 * a hierarchical list of all posts by nested categories, post title and authors
-* © Fabio Marzocca - 2015
+* © Fabio Marzocca - 2015-2016
 ******************************************************************/
 
 
@@ -25,16 +25,16 @@ function ACT_hierarchy_indexes($atts){
 ?>
 
 <form name="form1" method="post" action="<?=$PHP_SELF?>"  >
-        <div align="center" class="styled-select"><?php _e("Group by:", 'list-all-posts-by-ACT') ?> 
+        <div align="center" class="styled-select"><?php _e("Group by:", 'list-all-posts-by-authors-nested-categories-and-titles') ?> 
           <select name="order"  id="order"  onChange=" ;this.form.submit();">
           <?php if (!($atts['singleuser']) and strpos($atts['show'], "Author") !== false): ?>
-            <option value="author" <?php if ($_POST['order']  == "author") echo "selected"; ?>><?php _e("Author", 'list-all-posts-by-ACT'); ?> </option>
+            <option value="author" <?php if ($_POST['order']  == "author") echo "selected"; ?>><?php _e("Author", 'list-all-posts-by-authors-nested-categories-and-titles'); ?> </option>
             <?php endif; ?>
             <?php if (strpos($atts['show'], "Title") !== false ): ?>
-            <option value="title" <?php if ($_POST['order']  == "title") echo "selected"; ?>><?php _e("Title", 'list-all-posts-by-ACT'); ?> </option>
+            <option value="title" <?php if ($_POST['order']  == "title") echo "selected"; ?>><?php _e("Title", 'list-all-posts-by-authors-nested-categories-and-titles'); ?> </option>
              <?php endif; ?>
              <?php if (strpos($atts['show'], "Category") !== false ): ?>
-            <option value="category" <?php if ($_POST['order']  == "category") echo "selected"; ?>><?php _e("Category", 'list-all-posts-by-ACT'); ?> </option>
+            <option value="category" <?php if ($_POST['order']  == "category") echo "selected"; ?>><?php _e("Category", 'list-all-posts-by-authors-nested-categories-and-titles'); ?> </option>
             <?php endif; ?>
           </select>
         </div>
