@@ -1,148 +1,166 @@
+# Copyright (C) 2016 List all posts by Author, nested Categories and Titles
+# This file is distributed under the same license as the List all posts by Author, nested Categories and Titles package.
 msgid ""
 msgstr ""
-"Project-Id-Version: list-all-files-by-ACT\n"
-"POT-Creation-Date: 2015-03-05 11:45+0100\n"
-"PO-Revision-Date: 2015-03-05 11:46+0100\n"
-"Last-Translator: Fabio Marzocca <marzoccafabio@gmail.com>\n"
-"Language-Team: \n"
-"Language: en\n"
+"Project-Id-Version: List all posts by Author, nested Categories and Titles "
+"2.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/list-all-posts-by-"
+"authors-nested-categories-and-titles\n"
+"POT-Creation-Date: 2016-03-31 13:55:37+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.4\n"
-"X-Poedit-Basepath: .\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-KeywordsList: __;_e\n"
-"X-Poedit-SearchPath-0: ..\n"
-"X-Poedit-SearchPath-1: ../include\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: ../include/ACT-admin.php:16
+#: include/ACT-admin.php:16
 msgid "Automatic shortcode generator"
 msgstr ""
 
-#: ../include/ACT-admin.php:23
+#: include/ACT-admin.php:23
 msgid "Select what list(s) to show:"
 msgstr ""
 
-#: ../include/ACT-admin.php:26
+#: include/ACT-admin.php:26
 msgid "Categories"
 msgstr ""
 
-#: ../include/ACT-admin.php:28
+#: include/ACT-admin.php:28
 msgid "Authors"
 msgstr ""
 
-#: ../include/ACT-admin.php:30
+#: include/ACT-admin.php:30
 msgid "Titles"
 msgstr ""
 
-#: ../include/ACT-admin.php:32
+#: include/ACT-admin.php:32
 msgid ""
 "Selecting more than one choice will include a selector dropdown box in your "
 "page."
 msgstr ""
 
-#: ../include/ACT-admin.php:34
+#: include/ACT-admin.php:34
 msgid "Is this a single user site?"
 msgstr ""
 
-#: ../include/ACT-admin.php:37 ../include/ACT-admin.php:44
+#: include/ACT-admin.php:37 include/ACT-admin.php:44
 msgid "Yes"
 msgstr ""
 
-#: ../include/ACT-admin.php:39
+#: include/ACT-admin.php:39
 msgid ""
 "This option is for websites with a single author. It removes grouping by "
 "Authors and any author name in the list."
 msgstr ""
 
-#: ../include/ACT-admin.php:41
+#: include/ACT-admin.php:41
 msgid "Include admin's posts?"
 msgstr ""
 
-#: ../include/ACT-admin.php:49
+#: include/ACT-admin.php:49
 msgid "Limit number of posts to max:"
 msgstr ""
 
-#: ../include/ACT-admin.php:50
+#: include/ACT-admin.php:50
 msgid ""
 "Limit the number of posts in the lists, including only<br /> a certain "
 "number of the most recent posts.<br />This is achieved separately for the 3 "
 "lists."
 msgstr ""
 
-#: ../include/ACT-admin.php:52
+#: include/ACT-admin.php:52
 msgid "Categories (0 means no limit)"
 msgstr ""
 
-#: ../include/ACT-admin.php:55
+#: include/ACT-admin.php:55
 msgid ""
 "Limit the Categories list to only the \"x\" most recent for every category."
 msgstr ""
 
-#: ../include/ACT-admin.php:57
+#: include/ACT-admin.php:57
 msgid "Authors (0 means no limit)"
 msgstr ""
 
-#: ../include/ACT-admin.php:60
+#: include/ACT-admin.php:60
 msgid "Limit the Authors list to only the \"x\" most recent for every author."
 msgstr ""
 
-#: ../include/ACT-admin.php:62
+#: include/ACT-admin.php:62
 msgid "Titles (0 means no limit)"
 msgstr ""
 
-#: ../include/ACT-admin.php:65
+#: include/ACT-admin.php:65
 msgid "Limit the Titles list to only the \"x\" most recent ones."
 msgstr ""
 
-#: ../include/ACT-admin.php:71
+#: include/ACT-admin.php:71
 msgid ""
 "Categories to be EXCLUDED <br />(posts in selected Categories won't be "
-"listed) "
+"listed)"
 msgstr ""
 
-#: ../include/ACT-admin.php:76
+#: include/ACT-admin.php:76
 msgid "Exclude posts from selected Categories"
 msgstr ""
 
-#: ../include/ACT-admin.php:83
+#: include/ACT-admin.php:83
 msgid "Generate Shortcode"
 msgstr ""
 
-#: ../include/ACT-admin.php:193
+#: include/ACT-admin.php:193
 msgid "This is your shortcode:"
 msgstr ""
 
-#: ../include/ACT-admin.php:196
+#: include/ACT-admin.php:196
 msgid "Copy & Paste it into your page"
 msgstr ""
 
-#: ../include/ACT-displayer.php:28
+#: include/ACT-displayer.php:28
 msgid "Group by:"
-msgstr "Group by:"
+msgstr ""
 
-#: ../include/ACT-displayer.php:31
+#: include/ACT-displayer.php:31
 msgid "Author"
-msgstr "Author"
+msgstr ""
 
-#: ../include/ACT-displayer.php:34
+#: include/ACT-displayer.php:34
 msgid "Title"
-msgstr "Title"
+msgstr ""
 
-#: ../include/ACT-displayer.php:37
+#: include/ACT-displayer.php:37
 msgid "Category"
-msgstr "Category"
+msgstr ""
 
-#: ../list-all-posts-by-ACT.php:84
+#: list-all-posts-by-ACT.php:84
 msgid "You must select at least one list to show!"
 msgstr ""
 
-#: ../list-all-posts-by-ACT.php:85
+#: list-all-posts-by-ACT.php:85
 msgid ""
 "The shortcode has been generated. You'll find it at the bottom of this page."
 msgstr ""
 
-#: ../list-all-posts-by-ACT.php:102 ../list-all-posts-by-ACT.php:103
+#: list-all-posts-by-ACT.php:102 list-all-posts-by-ACT.php:103
 msgid "ACT List Shortcodes"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "List all posts by Author, nested Categories and Titles"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/fmarzocca/List-all-posts-by-ACT"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "A plugin to list all posts by Author, nested Categories and Titles"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Fabio Marzocca"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://www.marzocca.net"
 msgstr ""
