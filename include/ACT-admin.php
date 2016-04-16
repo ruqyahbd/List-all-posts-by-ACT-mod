@@ -63,17 +63,24 @@ function ACT_shortcode_helper() {
 		<div>
 			<input id="limit_tit" name="limit_tit" class="element text small" type="number" maxlength="4" value="0"/> 
 		</div><p class="guidelines" id="guide_8"><small><?php echo __('Limit the Titles list to only the "x" most recent ones.','list-all-posts-by-authors-nested-categories-and-titles');?></small></p> 
-		</li>		
+				</li><br />		
+		<li id="li_9" >
+			<label class="description" ><?php echo __('Show posts in reverse date order <br />(not applicable to List by Title)','list-all-posts-by-authors-nested-categories-and-titles');?> </label>	
+			<span>
+			<input id="reverse_date" name="reverse_date" class="element checkbox" type="checkbox" value="1" /> 
+		<label class="choice" for="reverse_date"><?php echo __('Yes','list-all-posts-by-authors-nested-categories-and-titles');?></label>
+			</span><p class="guidelines" id="guide_9"><small><?php echo __('Default is from newest to oldest post','list-all-posts-by-authors-nested-categories-and-titles');?> </small></p> 
+			</li>			
 		</div>
 		
-		<div id="second_col" style="float:left; width:40%; display:inline"> 
-		<li id="li_9" style="width:99%" >
+		<div id="second_col" style="float:left; width:40%; display:inline">
+		<li id="li_10" style="width:99%" >
 		<label class="description" ><?php echo __('Categories to be EXCLUDED <br />(posts in selected Categories won\'t be listed)','list-all-posts-by-authors-nested-categories-and-titles');?></label>
 		<span>
 		<br />
 			<?php ACT_list_categories(); ?>
 
-		</span><p class="guidelines" id="guide_9"><small><?php echo __('Exclude posts from selected Categories','list-all-posts-by-authors-nested-categories-and-titles');?> </small></p> 
+			</span><p class="guidelines" id="guide_10"><small><?php echo __('Exclude posts from selected Categories','list-all-posts-by-authors-nested-categories-and-titles');?> </small></p> 
 		</li>
 		</div>
 			
@@ -177,6 +184,11 @@ function ACT_processform() {
 			$sc = $sc." totalpoststitle=".$_POST['limit_tit'];
 		}
 	}
+	
+	/** Post order  **/
+	if ($_POST['reverse_date']) {
+		$sc = $sc." reverse-date=1";
+	}
 
 	/** Excluded Categories **/
 	$cat_array = array();
@@ -199,3 +211,4 @@ function ACT_processform() {
 
 	die();
 }
+

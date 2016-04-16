@@ -92,7 +92,7 @@ function ACT_traverse_cat_tree( $cat, $atts ) {
 	$post_types = get_post_types( $postargs);
 
 	array_push($post_types, 'post'); 
-	$args = array('category__in' => array( $cat ), 'numberposts' => -1, 'post_type' => $post_types);
+	$args = array('category__in' => array( $cat ), 'numberposts' => -1, 'order' => ($atts['reverse-date'] ? 'ASC' : 'DESC'), 'post_type' => $post_types);
 	
 	$cat_posts = get_posts( $args );
 	
@@ -225,8 +225,7 @@ foreach ( $autori as $user ):
     		'author'        =>  $user->ID, 
 			'posts_per_page' =>  -1,
 			'post_type'		=> $post_types,
-    		'orderby'       =>  'title',
-    		'order'         =>  'ASC' 
+    		'order'         =>  ($atts['reverse-date'] ? 'ASC' : 'DESC')
    		 );
 	}
 	$author_posts=  get_posts( $args ); 
@@ -266,3 +265,4 @@ foreach ( $autori as $user ):
 
 
 ?>
+
