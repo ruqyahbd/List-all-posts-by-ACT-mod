@@ -273,5 +273,3 @@ foreach ( $autori as $user ):
 	}
 
 ?>
-
-

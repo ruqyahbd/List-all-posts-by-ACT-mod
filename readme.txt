@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: nested categories, posts, authors, titles
 Requires at least: 4.0.1
 Tested up to: 4.5
-Stable tag: 2.6
+Stable tag: 2.6.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -96,7 +96,7 @@ If you have a large numbers of posts (>2,000), it could be convenient to limit t
 
 **Show posts list in reverse date order**
 
-By default, the posts will be listed from newest to oldest. To change this behaviour, use the *reverse=1* parameter.
+By default, the posts will be listed from newest to oldest. To change this behaviour, use the *reverse-date=1* parameter.
 
 
 > If you like the plugin, feel free to rate it (on the right side of this page) or [donate via PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4EH3N5XZJZCRQ). Thanks a lot! :)
@@ -122,6 +122,9 @@ Yes. Just use the *show* option to display only one list, as explained in descri
 
 
 == Changelog ==
+
+= 2.6.5 =
+* Removed few unwanted characters
 
 = 2.6 =
 * Bug fix
