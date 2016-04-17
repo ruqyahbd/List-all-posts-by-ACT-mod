@@ -62,7 +62,7 @@ function ACT_hierarchy_indexes($atts){
 		ACT_bycategory($atts);
 	}
  echo "</div> <!-- ACT-wrapper -->";
- $output_string=ob_get_contents();;
+ $output_string=ob_get_contents();
  ob_end_clean();
  return $output_string;
 }
@@ -92,7 +92,11 @@ function ACT_traverse_cat_tree( $cat, $atts ) {
 	$post_types = get_post_types( $postargs);
 
 	array_push($post_types, 'post'); 
-	$args = array('category__in' => array( $cat ), 'numberposts' => -1, 'order' => ($atts['reverse-date'] ? 'ASC' : 'DESC'), 'post_type' => $post_types);
+	$ordering = 'DESC';
+	if ($atts['reverse-date']) {
+		$ordering = 'ASC';
+	}
+	$args = array('category__in' => array( $cat ), 'numberposts' => -1, 'order' => $ordering, 'post_type' => $post_types);
 	
 	$cat_posts = get_posts( $args );
 	
@@ -213,7 +217,12 @@ foreach ( $autori as $user ):
 	$post_types = get_post_types( $postargs);
 
 	array_push($post_types, 'post'); 
-
+	
+   	$ordering = 'DESC';
+	if ($atts['reverse-date']) {
+		$ordering = 'ASC';
+	}
+	
 	if ($atts['postsperauthor'] > -1){
 		$args= array(
     		'author'        =>  $user->ID, 
@@ -225,7 +234,7 @@ foreach ( $autori as $user ):
     		'author'        =>  $user->ID, 
 			'posts_per_page' =>  -1,
 			'post_type'		=> $post_types,
-    		'order'         =>  ($atts['reverse-date'] ? 'ASC' : 'DESC')
+    		'order'         =>  $ordering
    		 );
 	}
 	$author_posts=  get_posts( $args ); 
@@ -263,6 +272,6 @@ foreach ( $autori as $user ):
 	endforeach;
 	}
 
-
 ?>
+
 

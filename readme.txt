@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: nested categories, posts, authors, titles
 Requires at least: 4.0.1
 Tested up to: 4.5
-Stable tag: 2.5
+Stable tag: 2.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -122,6 +122,9 @@ Yes. Just use the *show* option to display only one list, as explained in descri
 
 
 == Changelog ==
+
+= 2.6 =
+* Bug fix
 
 = 2.5 =
 * Introducing a new switch to change the posts lists in reverse date order
