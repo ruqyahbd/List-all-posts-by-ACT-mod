@@ -212,3 +212,4 @@ function ACT_processform() {
 	die();
 }
 
+?>
