@@ -3,7 +3,7 @@
 	Plugin Name: List all posts by Author, nested Categories and Titles
 	Plugin URI: https://github.com/fmarzocca/List-all-posts-by-ACT
 	Description: A plugin to list all posts by Author, nested Categories and Titles
-	Version: 2.6.5
+	Version: 2.6.6
 	Author: Fabio Marzocca
 	Author URI: http://www.marzocca.net
 	Text Domain:   list-all-posts-by-authors-nested-categories-and-titles
@@ -35,62 +35,64 @@ require_once 'include/ACT-admin.php';
 
 /* Shortcode */
 
-function ACT_fullindex( $atts) {
-	$atts = shortcode_atts(array(
-			'exclude'			=>	null,
-			'admin'				=>	0,
-			'singleuser'		=>  0,
-			'show'				=>  "Category, Author, Title",
-			'postspercategory'	=> -1,
-			'postsperauthor'	=> -1,
-			'totalpoststitle'	=> -1,
-		    'reverse-date' 		=> 	0
-			 ), $atts);
-	return ACT_hierarchy_indexes($atts);
-	}
+function ACT_fullindex($atts)
+{
+    $atts = shortcode_atts(array(
+            'exclude'           =>  null,
+            'admin'             =>  0,
+            'singleuser'        =>  0,
+            'show'              =>  "Category, Author, Title",
+            'postspercategory'  => -1,
+            'postsperauthor'    => -1,
+            'totalpoststitle'   => -1,
+            'reverse-date'      =>  0
+             ), $atts);
+    return ACT_hierarchy_indexes($atts);
+}
 add_shortcode( 'ACT-list', 'ACT_fullindex' );
 
 /* Localization */
 
-function ACT_load_i18n(){
-	load_plugin_textdomain( 'list-all-posts-by-authors-nested-categories-and-titles', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
-	}
-	add_action( 'plugins_loaded', 'ACT_load_i18n' );
+function ACT_load_i18n()
+{
+    load_plugin_textdomain( 'list-all-posts-by-authors-nested-categories-and-titles', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+}
+    add_action( 'plugins_loaded', 'ACT_load_i18n' );
 
  
 /* Add CSS and scripts on the frontend*/
-	
-function ACT_css(){
-		wp_register_style( 'ACT_css', plugins_url( 'ACT.css' , __FILE__ ) );
-		wp_enqueue_style( 'ACT_css' );
-	} // function
+    
+function ACT_css()
+{
+        wp_register_style( 'ACT_css', plugins_url( 'ACT.css', __FILE__ ) );
+        wp_enqueue_style( 'ACT_css' );
+} // function
 add_action( 'wp_enqueue_scripts', 'ACT_css' );
 
 
  
 /* Add CSS and scripts on the admin section*/
-function ACT_load_admin_css ($hook) {
-	
-	if ( 'tools_page_ACT_shortcode_helper' != $hook ) {
-		return;
-	}
-	
-	wp_register_style( 'ACT_view_css', plugins_url( 'ACT_view.css' , __FILE__ ) );
-	wp_enqueue_style( 'ACT_view_css' );
-	wp_register_script( 'ACT_view_js', plugins_url( 'ACT_view.js' , __FILE__ ) );
-	wp_enqueue_script( 'ACT_view_js');
-	wp_register_script( 'ACT_form_js', plugins_url( 'ACT_form.js' , __FILE__ ) ,array( 'jquery' ));
-	// Localize the script with new data
-	$translation_array = array(
-	'alert_showlist' => __( 'You must select at least one list to show!', 'list-all-posts-by-authors-nested-categories-and-titles' ),
-	'alert_end' => __( 'The shortcode has been generated. You\'ll find it at the bottom of this page.', 'list-all-posts-by-authors-nested-categories-and-titles' )
-);
-	wp_enqueue_script( 'ACT_form_js');
-	wp_localize_script( 'ACT_form_js', 'ACT_obj', $translation_array );
-
-	
+function ACT_load_admin_css($hook)
+{
+    
+    if ('tools_page_ACT_shortcode_helper' != $hook) {
+        return;
+    }
+    
+    wp_register_style( 'ACT_view_css', plugins_url( 'ACT_view.css', __FILE__ ) );
+    wp_enqueue_style( 'ACT_view_css' );
+    wp_register_script( 'ACT_view_js', plugins_url( 'ACT_view.js', __FILE__ ) );
+    wp_enqueue_script( 'ACT_view_js');
+    wp_register_script( 'ACT_form_js', plugins_url( 'ACT_form.js', __FILE__ ), array( 'jquery' ));
+    // Localize the script with new data
+    $translation_array = array(
+    'alert_showlist' => __( 'You must select at least one list to show!', 'list-all-posts-by-authors-nested-categories-and-titles' ),
+    'alert_end' => __( 'The shortcode has been generated. You\'ll find it at the bottom of this page.', 'list-all-posts-by-authors-nested-categories-and-titles' )
+    );
+    wp_enqueue_script( 'ACT_form_js');
+    wp_localize_script( 'ACT_form_js', 'ACT_obj', $translation_array );
 }
-add_action('admin_enqueue_scripts','ACT_load_admin_css');
+add_action('admin_enqueue_scripts', 'ACT_load_admin_css');
 
 /*******************************************************************************
 
@@ -98,13 +100,14 @@ add_action('admin_enqueue_scripts','ACT_load_admin_css');
 
 *******************************************************************************/
 function ACT_tools_menu()
-{	if (function_exists('add_management_page'))
-	{	add_management_page(
-			__('ACT List Shortcodes','list-all-posts-by-authors-nested-categories-and-titles'),
-			__('ACT List Shortcodes','list-all-posts-by-authors-nested-categories-and-titles'),
-			'administrator',
-			'ACT_shortcode_helper',
-			'ACT_shortcode_helper');
+{
+    if (function_exists('add_management_page')) {
+        add_management_page(
+            __('ACT List Shortcodes', 'list-all-posts-by-authors-nested-categories-and-titles'),
+            __('ACT List Shortcodes', 'list-all-posts-by-authors-nested-categories-and-titles'),
+            'administrator',
+            'ACT_shortcode_helper',
+            'ACT_shortcode_helper');
     }
 }
 add_action('admin_menu', 'ACT_tools_menu');
@@ -114,7 +117,3 @@ add_action('admin_menu', 'ACT_tools_menu');
 	HOOK AJAX
 	********************************************************************/
 add_action('wp_ajax_ACT_processform', 'ACT_processform');
-
-
-
-?>
