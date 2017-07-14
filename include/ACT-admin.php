@@ -1,4 +1,13 @@
 <?php
+/*****************************************************************
+*
+* 
+* a hierarchical list of all posts by nested categories, post title and authors
+* © Fabio Marzocca - 2015-2017
+*
+* Backend funtions
+******************************************************************/
+
 
 function ACT_shortcode_helper()
 {
@@ -71,7 +80,16 @@ function ACT_shortcode_helper()
             <input id="reverse_date" name="reverse_date" class="element checkbox" type="checkbox" value="1" /> 
         <label class="choice" for="reverse_date"><?php echo __('Yes', 'list-all-posts-by-authors-nested-categories-and-titles');?></label>
             </span><p class="guidelines" id="guide_9"><small><?php echo __('Default is from newest to oldest post', 'list-all-posts-by-authors-nested-categories-and-titles');?> </small></p> 
-            </li>           
+            </li>        
+				
+        <li id="li_9b" >
+            <label class="description" ><?php echo __('Show posts date', 'list-all-posts-by-authors-nested-categories-and-titles');?> </label>  
+            <span>
+            <input id="postdate" name="postdate" class="element checkbox" type="checkbox" value="1" /> 
+        <label class="choice" for="postdate"><?php echo __('Yes', 'list-all-posts-by-authors-nested-categories-and-titles');?></label>
+            </span><p class="guidelines" id="guide_9b"><small><?php echo __('Default is NO', 'list-all-posts-by-authors-nested-categories-and-titles');?> </small></p> 
+            </li>   				
+				
         </div>
         
         <div id="second_col" style="float:left; width:40%; display:inline">
@@ -193,6 +211,10 @@ function ACT_processform()
         $sc = $sc." reverse-date=1";
     }
 
+	if($_POST['postdate']){
+		$sc = $sc." postdate=1";
+	}
+	
     /** Excluded Categories **/
     $cat_array = array();
     $cat=$_POST['cat'];

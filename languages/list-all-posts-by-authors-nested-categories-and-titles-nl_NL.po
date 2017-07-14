@@ -1,56 +1,57 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: list-all-files-by-ACT\n"
-"POT-Creation-Date: 2015-03-05 11:45+0100\n"
-"PO-Revision-Date: 2015-03-05 14:44+0100\n"
+"POT-Creation-Date: 2017-07-14 14:42+0200\n"
+"PO-Revision-Date: 2017-07-14 14:42+0200\n"
 "Last-Translator: Rolf van Gelder <info@cagewebdev.com>\n"
 "Language-Team: CAGE | Rolf van Gelder <info@cagewebdev.com>\n"
+"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 2.0.1\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e\n"
-"Language: nl_NL\n"
 "X-Poedit-SearchPath-0: ..\n"
 "X-Poedit-SearchPath-1: ../include\n"
 
-#: ../include/ACT-admin.php:16
+#: ../include/ACT-admin.php:26
 msgid "Automatic shortcode generator"
 msgstr "Automatische shortcode generator"
 
-#: ../include/ACT-admin.php:23
+#: ../include/ACT-admin.php:33
 msgid "Select what list(s) to show:"
 msgstr "Selecteer welke lijst(en) getoond moeten worden:"
 
-#: ../include/ACT-admin.php:26
+#: ../include/ACT-admin.php:36
 msgid "Categories"
 msgstr "Categorieën"
 
-#: ../include/ACT-admin.php:28
+#: ../include/ACT-admin.php:38
 msgid "Authors"
 msgstr "Auteurs"
 
-#: ../include/ACT-admin.php:30
+#: ../include/ACT-admin.php:40
 msgid "Titles"
 msgstr "Titels"
 
-#: ../include/ACT-admin.php:32
+#: ../include/ACT-admin.php:42
 msgid ""
 "Selecting more than one choice will include a selector dropdown box in your "
 "page."
 msgstr "Als je er meer dan één kiest verschijnt er een dropdown op je pagina."
 
-#: ../include/ACT-admin.php:34
+#: ../include/ACT-admin.php:44
 msgid "Is this a single user site?"
 msgstr "Heeft deze site slechts één auteur?"
 
-#: ../include/ACT-admin.php:37 ../include/ACT-admin.php:44
+#: ../include/ACT-admin.php:47 ../include/ACT-admin.php:54
+#: ../include/ACT-admin.php:81 ../include/ACT-admin.php:89
 msgid "Yes"
 msgstr "Ja"
 
-#: ../include/ACT-admin.php:39
+#: ../include/ACT-admin.php:49
 msgid ""
 "This option is for websites with a single author. It removes grouping by "
 "Authors and any author name in the list."
@@ -58,15 +59,15 @@ msgstr ""
 "Deze optie is voor websites met slechts één auteur. Het verwijdert "
 "groepering op Auteurs en alle auteurnamen in de lijst."
 
-#: ../include/ACT-admin.php:41
+#: ../include/ACT-admin.php:51
 msgid "Include admin's posts?"
 msgstr "Ook Admin berichten tonen?"
 
-#: ../include/ACT-admin.php:49
+#: ../include/ACT-admin.php:59
 msgid "Limit number of posts to max:"
 msgstr "Limiteer het aantal berichten tot maximaal:"
 
-#: ../include/ACT-admin.php:50
+#: ../include/ACT-admin.php:60
 msgid ""
 "Limit the number of posts in the lists, including only<br /> a certain "
 "number of the most recent posts.<br />This is achieved separately for the 3 "
@@ -75,81 +76,102 @@ msgstr ""
 "Limiteer het aantal berichten in de lijsten, met alleen<br />een bepaald "
 "aantal recente berichten.<br />Dit is gescheiden voor alle 3 lijsten."
 
-#: ../include/ACT-admin.php:52
+#: ../include/ACT-admin.php:62
 msgid "Categories (0 means no limit)"
 msgstr "Categorieën (0 betekent geen limiet)"
 
-#: ../include/ACT-admin.php:55
+#: ../include/ACT-admin.php:65
 msgid ""
 "Limit the Categories list to only the \"x\" most recent for every category."
 msgstr "Limiteer de categorieënlijst tot alleen de \"x\" meest recente."
 
-#: ../include/ACT-admin.php:57
+#: ../include/ACT-admin.php:67
 msgid "Authors (0 means no limit)"
 msgstr "Auteurs (0 betekent geen limiet)"
 
-#: ../include/ACT-admin.php:60
+#: ../include/ACT-admin.php:70
 msgid "Limit the Authors list to only the \"x\" most recent for every author."
 msgstr "Limiteer de auteurslijst tot alleen de \"x\" meest recente."
 
-#: ../include/ACT-admin.php:62
+#: ../include/ACT-admin.php:72
 msgid "Titles (0 means no limit)"
 msgstr "Titels (0 betekent geen limiet)"
 
-#: ../include/ACT-admin.php:65
+#: ../include/ACT-admin.php:75
 msgid "Limit the Titles list to only the \"x\" most recent ones."
 msgstr "Limiteer de titelslijst tot alleen de \"x\" meest recente."
 
-#: ../include/ACT-admin.php:71
+#: ../include/ACT-admin.php:78
+msgid ""
+"Show posts in reverse date order <br />(not applicable to List by Title)"
+msgstr ""
+
+#: ../include/ACT-admin.php:82
+msgid "Default is from newest to oldest post"
+msgstr ""
+
+#: ../include/ACT-admin.php:86
+msgid "Show posts date"
+msgstr ""
+
+#: ../include/ACT-admin.php:90
+msgid "Default is NO"
+msgstr ""
+
+#: ../include/ACT-admin.php:97
+#, fuzzy
+#| msgid ""
+#| "Categories to be EXCLUDED <br />(posts in selected Categories won't be "
+#| "listed) "
 msgid ""
 "Categories to be EXCLUDED <br />(posts in selected Categories won't be "
-"listed) "
+"listed)"
 msgstr ""
 "Categorieën om UIT TE SLUITEN<br />(berichten in geselecteerde Categorieën "
 "worden niet getoond)"
 
-#: ../include/ACT-admin.php:76
+#: ../include/ACT-admin.php:102
 msgid "Exclude posts from selected Categories"
 msgstr "Sluit berichten van de geselecteerde Categorieën uit"
 
-#: ../include/ACT-admin.php:83
+#: ../include/ACT-admin.php:109
 msgid "Generate Shortcode"
 msgstr "Genereer shortcode"
 
-#: ../include/ACT-admin.php:193
+#: ../include/ACT-admin.php:230
 msgid "This is your shortcode:"
 msgstr "Dit is jouw shortcode:"
 
-#: ../include/ACT-admin.php:196
+#: ../include/ACT-admin.php:233
 msgid "Copy & Paste it into your page"
 msgstr "Kopieëer & plak het in je pagina"
 
-#: ../include/ACT-displayer.php:28
+#: ../include/ACT-displayer.php:31
 msgid "Group by:"
 msgstr "Gegroepeerd op:"
 
-#: ../include/ACT-displayer.php:31
+#: ../include/ACT-displayer.php:36
 msgid "Author"
 msgstr "Auteur"
 
-#: ../include/ACT-displayer.php:34
+#: ../include/ACT-displayer.php:41
 msgid "Title"
 msgstr "Titel"
 
-#: ../include/ACT-displayer.php:37
+#: ../include/ACT-displayer.php:46
 msgid "Category"
 msgstr "Categorie"
 
-#: ../list-all-posts-by-ACT.php:84
+#: ../list-all-posts-by-ACT.php:90
 msgid "You must select at least one list to show!"
 msgstr "Je moet minstens één lijst selecteren om te tonen!"
 
-#: ../list-all-posts-by-ACT.php:85
+#: ../list-all-posts-by-ACT.php:91
 msgid ""
 "The shortcode has been generated. You'll find it at the bottom of this page."
 msgstr ""
 "De shortcode is gegenereerd. Je vindt hem aan  het einde van deze pagina."
 
-#: ../list-all-posts-by-ACT.php:102 ../list-all-posts-by-ACT.php:103
+#: ../list-all-posts-by-ACT.php:107 ../list-all-posts-by-ACT.php:108
 msgid "ACT List Shortcodes"
 msgstr "ACT List Shortcodes"

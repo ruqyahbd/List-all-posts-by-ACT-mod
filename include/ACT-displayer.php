@@ -4,7 +4,9 @@
 *
 * 
 * a hierarchical list of all posts by nested categories, post title and authors
-* © Fabio Marzocca - 2015-2016
+* © Fabio Marzocca - 2015-2017
+*
+* Frontend
 ******************************************************************/
 
 
@@ -113,7 +115,8 @@ function ACT_traverse_cat_tree($cat, $atts)
                 endif;
             }
             echo '<li class="subpost">';
-            echo '<a href="' . get_permalink( $post->ID ) . '">' . $post->post_title . '</a>';
+	       $postdate = get_the_date((""),$post->ID).' - ';
+	echo ($atts['postdate'] ? $postdate : ''). '<a href="' . get_permalink( $post->ID ) . '">' . $post->post_title . '</a>';
             if (!($atts['singleuser'])) :
                 echo "<span class='righttext'>[".get_the_author_meta( 'first_name', $post->post_author )." ".get_the_author_meta( 'last_name', $post->post_author )."]</span>";
             endif;
@@ -177,7 +180,8 @@ function ACT_bytitle($atts)
                 endif;
             }
             echo '<li>';
-            echo '<a href="' . get_permalink( $articolo->ID ) . '">' . $articolo->post_title . '</a>';
+	        $postdate = get_the_date((""),$post->ID).' - ';
+            echo ($atts['postdate'] ? $postdate : '').'<a href="' . get_permalink( $articolo->ID ) . '">' . $articolo->post_title . '</a>';
             if (!($atts['singleuser'])) :
                 echo "<span class='righttext'>[".get_the_author_meta( 'first_name', $articolo->post_author )." ".get_the_author_meta( 'last_name', $articolo->post_author )."]</span>";
             else :
@@ -254,8 +258,9 @@ function ACT_byauthor($atts)
                 if (has_category(explode(',', $atts['exclude']), $author_post->ID)) :
                     continue;
                 endif;
-                        
-                echo '<li><a href="' . get_permalink( $author_post->ID ) . '">'.$author_post->post_title.'</a>';
+                $postdate = get_the_date((""),$post->ID).' - ';  
+                echo '<li>';
+				echo ($atts['postdate'] ? $postdate : ''). '<a href="' . get_permalink( $author_post->ID ) . '">'.$author_post->post_title.'</a>';
                 $categories = get_the_category( $author_post->ID );
                 $list_cats =null;
                 foreach ($categories as $cat) :

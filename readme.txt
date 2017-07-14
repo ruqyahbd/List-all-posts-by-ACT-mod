@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: nested categories, posts, authors, titles
 Requires at least: 4.0.1
 Tested up to: 4.8
-Stable tag: 2.6.6
+Stable tag: 2.7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,8 @@ Shortcode's options include:
 * single-user website usage
 * select what list(s) to display
 * limit number of posts in list output 
+* Show (optional) post date
+* Show in reverse date order
 
 Output grouped by Category will look like:
 
@@ -98,6 +100,9 @@ If you have a large numbers of posts (>2,000), it could be convenient to limit t
 
 By default, the posts will be listed from newest to oldest. To change this behaviour, use the *reverse-date=1* parameter.
 
+**Show posts date (v.>=2.7.0)**
+
+The date of the post could be printed out before the post name, optionally
 
 > If you like the plugin, feel free to rate it (on the right side of this page) or [donate via PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4EH3N5XZJZCRQ). Thanks a lot! :)
 
@@ -122,6 +127,9 @@ Yes. Just use the *show* option to display only one list, as explained in descri
 
 
 == Changelog ==
+
+= 2.7.0 =
+* Introducing optional post-date printing in the list
 
 = 2.6.6 =
 * Minor changes. PSR2 code compliance
