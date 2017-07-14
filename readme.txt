@@ -124,6 +124,9 @@ Yes. Just use the *show* option to display only one list, as explained in descri
 == Screenshots ==
 
 1. The Shortcode generator in the Tools admin backend
+2. A frontend example (single user, no other authors)
+3. A frontend example (multiple users)
+
 
 
 == Changelog ==
