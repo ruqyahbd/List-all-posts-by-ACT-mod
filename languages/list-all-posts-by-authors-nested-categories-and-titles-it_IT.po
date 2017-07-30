@@ -1,0 +1,185 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: list-all-files-by-ACT\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/list-all-posts-by-"
+"authors-nested-categories-and-titles\n"
+"POT-Creation-Date: 2017-07-14 14:42+0200\n"
+"PO-Revision-Date: 2017-07-14 14:43+0200\n"
+"Last-Translator: Fabio Marzocca <marzoccafabio@gmail.com>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.1\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SearchPath-0: ..\n"
+"X-Poedit-SearchPath-1: ../include\n"
+
+#: ../include/ACT-admin.php:26
+msgid "Automatic shortcode generator"
+msgstr "Generatore automatico di Shortcode"
+
+#: ../include/ACT-admin.php:33
+msgid "Select what list(s) to show:"
+msgstr "Seleziona quale lista(e) visualizzare"
+
+#: ../include/ACT-admin.php:36
+msgid "Categories"
+msgstr "Categorie"
+
+#: ../include/ACT-admin.php:38
+msgid "Authors"
+msgstr "Autori"
+
+#: ../include/ACT-admin.php:40
+msgid "Titles"
+msgstr "Titoli"
+
+#: ../include/ACT-admin.php:42
+msgid ""
+"Selecting more than one choice will include a selector dropdown box in your "
+"page."
+msgstr ""
+"Selezionando più di una scelta, un selettore dropdown verrà visualizzato "
+"nella pagina."
+
+#: ../include/ACT-admin.php:44
+msgid "Is this a single user site?"
+msgstr "È questo un sito singolo utente?"
+
+#: ../include/ACT-admin.php:47 ../include/ACT-admin.php:54
+#: ../include/ACT-admin.php:81 ../include/ACT-admin.php:89
+msgid "Yes"
+msgstr "Sì"
+
+#: ../include/ACT-admin.php:49
+msgid ""
+"This option is for websites with a single author. It removes grouping by "
+"Authors and any author name in the list."
+msgstr ""
+"Questa opzione è per siti con singolo autore. La lista Autori viene rimossa."
+
+#: ../include/ACT-admin.php:51
+msgid "Include admin's posts?"
+msgstr "Includi gli articoli dell'amministratore?"
+
+#: ../include/ACT-admin.php:59
+msgid "Limit number of posts to max:"
+msgstr "Limita il numero di articoli a max:"
+
+#: ../include/ACT-admin.php:60
+msgid ""
+"Limit the number of posts in the lists, including only<br /> a certain "
+"number of the most recent posts.<br />This is achieved separately for the 3 "
+"lists."
+msgstr ""
+"Limita il numero di articoli nella lista, includendo solo<br /> un certo "
+"numero di articoli recenti.<br />La configurazione può essere diversa per "
+"ogni lista."
+
+#: ../include/ACT-admin.php:62
+msgid "Categories (0 means no limit)"
+msgstr "Categorie (0 significa nessun limite)"
+
+#: ../include/ACT-admin.php:65
+msgid ""
+"Limit the Categories list to only the \"x\" most recent for every category."
+msgstr "Limita la lista Categorie agli \"x\" articoli più recenti."
+
+#: ../include/ACT-admin.php:67
+msgid "Authors (0 means no limit)"
+msgstr "Autori (0 significa nessun limite)"
+
+#: ../include/ACT-admin.php:70
+msgid "Limit the Authors list to only the \"x\" most recent for every author."
+msgstr "Limita la lista Autori agli \"x\" articoli più recenti."
+
+#: ../include/ACT-admin.php:72
+msgid "Titles (0 means no limit)"
+msgstr "Titoli (0 significa nessun limite)"
+
+#: ../include/ACT-admin.php:75
+msgid "Limit the Titles list to only the \"x\" most recent ones."
+msgstr "Limita la lista Titoli agli \"x\" articoli più recenti."
+
+#: ../include/ACT-admin.php:78
+msgid ""
+"Show posts in reverse date order <br />(not applicable to List by Title)"
+msgstr ""
+"Elenca gli articoli in ordine inverso di data<br />(non applicabile alla "
+"lista per Titolo)"
+
+#: ../include/ACT-admin.php:82
+msgid "Default is from newest to oldest post"
+msgstr "Valore predefinito: dal più nuovo al più vecchio"
+
+#: ../include/ACT-admin.php:86
+msgid "Show posts date"
+msgstr "Mostra la data del post"
+
+#: ../include/ACT-admin.php:90
+msgid "Default is NO"
+msgstr "Valore predefinito: No"
+
+#: ../include/ACT-admin.php:97
+msgid ""
+"Categories to be EXCLUDED <br />(posts in selected Categories won't be "
+"listed)"
+msgstr ""
+"Categorie da ESCLUDERE<br />(gli articoli nelle categorie selezionate non "
+"verranno visualizzati)"
+
+#: ../include/ACT-admin.php:102
+msgid "Exclude posts from selected Categories"
+msgstr "Escludi articoli dalle categorie selezionate."
+
+#: ../include/ACT-admin.php:109
+msgid "Generate Shortcode"
+msgstr "Genera lo Shortcode"
+
+#: ../include/ACT-admin.php:230
+msgid "This is your shortcode:"
+msgstr "Questo è il tuo shortcode:"
+
+#: ../include/ACT-admin.php:233
+msgid "Copy & Paste it into your page"
+msgstr "Copia e incolla la stringa nella tua pagina"
+
+#: ../include/ACT-displayer.php:31
+msgid "Group by:"
+msgstr "Visualizza per:"
+
+#: ../include/ACT-displayer.php:36
+msgid "Author"
+msgstr "Autore"
+
+#: ../include/ACT-displayer.php:41
+msgid "Title"
+msgstr "Titolo"
+
+#: ../include/ACT-displayer.php:46
+msgid "Category"
+msgstr "Sezione"
+
+#: ../list-all-posts-by-ACT.php:90
+msgid "You must select at least one list to show!"
+msgstr "Deve selezionare almeno una lista da visualizzare!"
+
+#: ../list-all-posts-by-ACT.php:91
+msgid ""
+"The shortcode has been generated. You'll find it at the bottom of this page."
+msgstr "Lo Shortcode è stato generato. Lo troverai in fondo a questa pagina."
+
+#: ../list-all-posts-by-ACT.php:107 ../list-all-posts-by-ACT.php:108
+msgid "ACT List Shortcodes"
+msgstr "ACT List Shortcodes"
+
+#~ msgid ""
+#~ "Categories to be EXCLUDED <br />(posts in selected Categories won't be "
+#~ "listed) "
+#~ msgstr ""
+#~ "Categorie da ESCLUDERE<br />(gli articoli nelle Categorie selezionate non "
+#~ "verranno elencati)"
