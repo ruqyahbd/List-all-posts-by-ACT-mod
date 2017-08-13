@@ -3,7 +3,7 @@
 	Plugin Name: List all posts by Author, nested Categories and Titles
 	Plugin URI: https://github.com/fmarzocca/List-all-posts-by-ACT
 	Description: A plugin to list all posts by Author, nested Categories and Titles
-	Version: 2.7.1
+	Version: 2.7.2
 	Author: Fabio Marzocca
 	Author URI: http://www.marzocca.net
 	Text Domain:   list-all-posts-by-authors-nested-categories-and-titles
@@ -51,18 +51,8 @@ function ACT_fullindex($atts)
     return ACT_hierarchy_indexes($atts);
 }
 add_shortcode( 'ACT-list', 'ACT_fullindex' );
-
-/* Localization */
-
-function ACT_load_i18n()
-{
-    load_plugin_textdomain( 'list-all-posts-by-authors-nested-categories-and-titles', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
-}
-    add_action( 'plugins_loaded', 'ACT_load_i18n' );
-
  
-/* Add CSS and scripts on the frontend*/
-    
+/* Add CSS and scripts on the frontend*/    
 function ACT_css()
 {
         wp_register_style( 'ACT_css', plugins_url( 'ACT.css', __FILE__ ) );
