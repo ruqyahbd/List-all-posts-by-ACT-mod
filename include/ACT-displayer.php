@@ -115,7 +115,7 @@ function ACT_traverse_cat_tree($cat, $atts)
                 endif;
             }
             echo '<li class="subpost">';
-	       $postdate = get_the_date((""),$post->ID).' - ';
+	       $postdate = date_i18n( get_option( 'date_format' ), strtotime($post->post_date)).' - ';
 	echo ($atts['postdate'] ? $postdate : ''). '<a href="' . get_permalink( $post->ID ) . '">' . $post->post_title . '</a>';
             if (!($atts['singleuser'])) :
                 echo "<span class='righttext'>[".get_the_author_meta( 'first_name', $post->post_author )." ".get_the_author_meta( 'last_name', $post->post_author )."]</span>";
