@@ -133,7 +133,7 @@ As of version 2.7.1, this plugin no longer ships with translation files. Transla
 
 == Changelog ==
 
-= 2.7.3
+= 2.7.3 =
 * Bug fix
 
 = 2.7.2 =
