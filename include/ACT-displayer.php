@@ -231,18 +231,14 @@ function ACT_byauthor($atts)
             $ordering = 'ASC';
         }
     
-        if ($atts['postsperauthor'] > -1) {
-            $args= array(
-                'author'        =>  $user->ID,
-                'post_type'   => $post_types,
-                'posts_per_page' =>  -1);
-        } else {
-            $args= array(
-                'author'        =>  $user->ID,
-                'posts_per_page' =>  -1,
-                'post_type'     => $post_types,
-                'order'         =>  $ordering
-                 );
+        $args= array(
+            'author'        =>  $user->ID,
+            'post_type'   => $post_types,
+            'posts_per_page' =>  -1,
+            'category__not_in' => get_cats_by_slug(explode(',', $atts['exclude']))
+                );
+        if ($atts['postsperauthor'] == -1) {
+            array_push($args,'order',$ordering );
         }
             $author_posts=  get_posts( $args );
         if (!$author_posts) :
@@ -254,10 +250,6 @@ function ACT_byauthor($atts)
             echo '<ul>';
             $i = 0;
             foreach ($author_posts as $author_post) {
-                /* excluded categories   */
-                if (has_category(explode(',', $atts['exclude']), $author_post->ID)) :
-                    continue;
-                endif;
                 $postdate = date_i18n( get_option( 'date_format' ), strtotime($author_post->post_date)).' - ';  
                 echo '<li>';
                 echo ($atts['postdate'] ? $postdate : ''). '<a href="' . get_permalink( $author_post->ID ) . '">'.$author_post->post_title.'</a>';
@@ -281,4 +273,13 @@ function ACT_byauthor($atts)
     endforeach;
 }
 
+function get_cats_by_slug($catslugs) {
+    $catids = array();
+    foreach($catslugs as $slug) {
+        $catids[] = get_category_by_slug($slug)->term_id; 
+    }
+    return $catids;
+}
+
 ?>
+
