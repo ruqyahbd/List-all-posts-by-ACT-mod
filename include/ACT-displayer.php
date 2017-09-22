@@ -282,4 +282,3 @@ function get_cats_by_slug($catslugs) {
 }
 
 ?>
-
