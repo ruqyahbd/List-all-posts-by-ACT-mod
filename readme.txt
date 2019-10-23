@@ -3,7 +3,7 @@ Contributors: fmarzocca
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4EH3N5XZJZCRQ
 Tags: nested categories, posts, authors, titles
 Requires at least: 4.0.1
-Tested up to: 5.2
+Tested up to: 5.3
 Stable tag: 2.7.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
