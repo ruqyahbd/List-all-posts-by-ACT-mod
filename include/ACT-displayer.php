@@ -81,7 +81,7 @@ function ACT_bycategory($atts)
         endif;
     
         if (!$cat->parent) {
-            echo "<h4>".$cat->name."</h4><ul>";
+             echo "<h4><a href='".get_category_link($cat)."'>".$cat->name."</a></h4><ul>";
             ACT_traverse_cat_tree( $cat->term_id, $atts);
         }
     endforeach;
@@ -137,7 +137,7 @@ function ACT_traverse_cat_tree($cat, $atts)
             if (strpos($atts['exclude'], $cat->slug)!== false) :
                 continue;
             endif;
-              echo '<ul><li class="subcat">'.$cat->name.'</li>';
+               echo "<ul><li class='subcat'><a href='".get_category_link($cat)."'>".$cat->name."</a></li>";
               ACT_traverse_cat_tree( $cat->term_id, $atts);
         endforeach;
     endif;
@@ -244,7 +244,7 @@ function ACT_byauthor($atts)
         if (!$author_posts) :
             continue;
         endif;
-            echo '<h4>'.$user->display_name.'</h4>';
+            echo '<h4><a href="'.get_author_posts_url($user->ID).'">'.$user->display_name.'</a></h4>';
     
         if ($author_posts) {
             echo '<ul>';
