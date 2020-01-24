@@ -27,7 +27,7 @@ function ACT_hierarchy_indexes($atts)
     if (count(explode(",", $atts['show'])) > 1) :
 ?>
 
-<form name="form1" method="post" action="<?=$PHP_SELF?>"  >
+<form name="form1" method="post" >
         <div align="center" class="styled-select"><?php _e("Group by:", 'list-all-posts-by-authors-nested-categories-and-titles') ?> 
           <select name="order"  id="order"  onChange=" ;this.form.submit();">
             <?php if (!($atts['singleuser']) and strpos($atts['show'], "Author") !== false) : ?>
@@ -164,6 +164,7 @@ function ACT_bytitle($atts)
                     'order' => 'ASC');
     }
     $articoli = get_posts($args);
+    echo "<h4></h4>";
     if ($articoli) :
         echo "<ul>";
         $i = 0;
