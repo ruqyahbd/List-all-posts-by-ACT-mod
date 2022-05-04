@@ -81,7 +81,7 @@ function ACT_bycategory($atts)
         endif;
     
         if (!$cat->parent) {
-             echo "<h4><a href='".get_category_link($cat)."'>".$cat->name."</a></h4><ul>";
+             echo "<h4><a href='".get_category_link($cat)."'>".wptexturize($cat->name)."</a></h4><ul>";
             ACT_traverse_cat_tree( $cat->term_id, $atts);
         }
     endforeach;
@@ -116,7 +116,7 @@ function ACT_traverse_cat_tree($cat, $atts)
             }
             echo '<li class="subpost">';
            $postdate = date_i18n( get_option( 'date_format' ), strtotime($post->post_date)).' - ';
-    echo ($atts['postdate'] ? $postdate : ''). '<a href="' . get_permalink( $post->ID ) . '">' . $post->post_title . '</a>';
+    echo ($atts['postdate'] ? $postdate : ''). '<a href="' . get_permalink( $post->ID ) . '">' . wptexturize($post->post_title) . '</a>';
             if (!($atts['singleuser'])) :
                 echo "<span class='righttext'>[".get_the_author_meta( 'first_name', $post->post_author )." ".get_the_author_meta( 'last_name', $post->post_author )."]</span>";
             endif;
@@ -137,7 +137,7 @@ function ACT_traverse_cat_tree($cat, $atts)
             if (strpos($atts['exclude'], $cat->slug)!== false) :
                 continue;
             endif;
-               echo "<ul><li class='subcat'><a href='".get_category_link($cat)."'>".$cat->name."</a></li>";
+               echo "<ul><li class='subcat'><a href='".get_category_link($cat)."'>".wptexturize($cat->name)."</a></li>";
               ACT_traverse_cat_tree( $cat->term_id, $atts);
         endforeach;
     endif;
@@ -163,33 +163,33 @@ function ACT_bytitle($atts)
                     'post_type' => $post_types,
                     'order' => 'ASC');
     }
-    $articoli = get_posts($args);
+    $articles = get_posts($args);
     echo "<h4></h4>";
-    if ($articoli) :
+    if ($articles) :
         echo "<ul>";
         $i = 0;
-        foreach ($articoli as $articolo) :
+        foreach ($articles as $article) :
         /* excluded categories  */
-            if (has_category(explode(',', $atts['exclude']), $articolo->ID)) :
+            if (has_category(explode(',', $atts['exclude']), $article->ID)) :
                 continue;
             endif;
             
         /* include admin? */
             if (!$atts['admin']) {
-                if (is_super_admin($articolo->post_author)) :
+                if (is_super_admin($article->post_author)) :
                     continue;
                 endif;
             }
             echo '<li>';
-            $postdate = date_i18n( get_option( 'date_format' ), strtotime($articolo->post_date)).' - ';
-            echo ($atts['postdate'] ? $postdate : '').'<a href="' . get_permalink( $articolo->ID ) . '">' . $articolo->post_title . '</a>';
+            $postdate = date_i18n( get_option( 'date_format' ), strtotime($article->post_date)).' - ';
+            echo ($atts['postdate'] ? $postdate : '').'<a href="' . get_permalink( $article->ID ) . '">' . wptexturize($article->post_title) . '</a>';
             if (!($atts['singleuser'])) :
-                echo "<span class='righttext'>[".get_the_author_meta( 'first_name', $articolo->post_author )." ".get_the_author_meta( 'last_name', $articolo->post_author )."]</span>";
+                echo "<span class='righttext'>[".get_the_author_meta( 'first_name', $article->post_author )." ".get_the_author_meta( 'last_name', $article->post_author )."]</span>";
             else :
-                $categories = get_the_category( $articolo->ID );
+                $categories = get_the_category( $article->ID );
                 $list_cats =null;
                 foreach ($categories as $cat) :
-                    $list_cats .= $cat->name.", ";
+                    $list_cats .= wptexturize($cat->name).", ";
                 endforeach;
                 $list_cats = substr($list_cats, 0, -2);
                 echo "<span class='righttext'>[".$list_cats."]</span>";
@@ -257,7 +257,7 @@ function ACT_byauthor($atts)
                 $categories = get_the_category( $author_post->ID );
                 $list_cats =null;
                 foreach ($categories as $cat) :
-                    $list_cats .= $cat->name.", ";
+                    $list_cats .= wptexturize($cat->name).", ";
                 endforeach;
                 $list_cats = substr($list_cats, 0, -2);
                 echo "<span class='righttext'>[".$list_cats."]</span>";
