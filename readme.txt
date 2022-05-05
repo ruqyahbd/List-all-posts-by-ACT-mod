@@ -1,5 +1,5 @@
 === List all posts by Authors, nested Categories and Titles  ===
-Contributors: fmarzocca
+Contributors: fmarzocca, andrea-calligaris
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4EH3N5XZJZCRQ
 Tags: nested categories, posts, authors, titles
 Requires at least: 4.0.1
