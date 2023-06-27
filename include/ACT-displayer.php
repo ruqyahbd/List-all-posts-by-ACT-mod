@@ -277,7 +277,8 @@ function ACT_byauthor($atts)
 function get_cats_by_slug($catslugs) {
     $catids = array();
     foreach($catslugs as $slug) {
-        $catids[] = get_category_by_slug($slug)->term_id; 
+        if (!get_category_by_slug($slug) ) break;
+        $catids[] = get_category_by_slug($slug)->term_id;
     }
     return $catids;
 }

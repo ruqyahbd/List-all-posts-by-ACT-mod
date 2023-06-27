@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: nested categories, posts, authors, titles
 Requires at least: 4.0.1
 Tested up to: 6.2
-Stable tag: 2.7.9
+Stable tag: 2.7.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -132,6 +132,8 @@ As of version 2.7.1, this plugin no longer ships with translation files. Transla
 
 
 == Changelog ==
+= 2.7.10
+* bug fix for php 8
 
 = 2.7.9
 * wptexturize output, and change some vars name (contributed by A. Calligaris)
