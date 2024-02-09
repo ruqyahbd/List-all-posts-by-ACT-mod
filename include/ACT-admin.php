@@ -219,8 +219,8 @@ function ACT_processform()
     $cat_array = array();
     $cat=$_POST['cat'];
     if ($cat) {
-        while (list ($key,$val) = @each ($cat)) {
-            array_push($cat_array, $val);
+       foreach ($cat as $key => $val) {
+            array_push($cat_array,$val);
         }
         $cat_string = implode(",", $cat_array);
         $sc = $sc." exclude='".$cat_string."'";
