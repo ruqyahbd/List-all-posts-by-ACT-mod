@@ -3,7 +3,7 @@
 *
 * 
 * a hierarchical list of all posts by nested categories, post title and authors
-* © Fabio Marzocca - 2015-2023
+* © Fabio Marzocca - 2015-2024
 *
 * Backend funtions
 ******************************************************************/
