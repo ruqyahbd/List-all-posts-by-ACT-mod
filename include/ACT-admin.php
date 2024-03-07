@@ -162,14 +162,14 @@ function ACT_processform()
     
     /* Show List */
     $showlist= array();
-    if ($_POST['show_cat']) {
+    if (strip_tags($_POST['show_cat'])) {
         $showlist[0] ="Category";
     }
-    if ($_POST['show_aut']) {
+    if(array_key_exists( 'show_aut' , $_POST)) {
         $showlist[1] ="Author";
     }
     
-    if ($_POST['show_tit']) {
+    if(array_key_exists( 'show_tit' , $_POST ))  {
         $showlist[2] ="Title";
     }
 
@@ -178,48 +178,48 @@ function ACT_processform()
 
 
     /** singleuser **/
-    if ($_POST['single']) {
+    if(array_key_exists( 'single' , $_POST )) {
         $sc = $sc." singleuser=1";
     }
     
         /** is admin included? **/
-    if ($_POST['include_admin']) {
+        if(array_key_exists( 'include_admin' , $_POST ))  {
         $sc = $sc." admin=1";
     }
     
         /** Limit output **/
-    if ($_POST['limit_cat']) {
-        if ($_POST['limit_cat']>0) {
-            $sc = $sc." postspercategory=".$_POST['limit_cat'];
+    if (strip_tags($_POST['limit_cat'])) {
+        if (strip_tags($_POST['limit_cat'])>0) {
+            $sc = $sc." postspercategory=".strip_tags($_POST['limit_cat']);
         }
     }
     
-    if ($_POST['limit_aut']) {
-        if ($_POST['limit_aut']>0) {
-            $sc = $sc." postsperauthor=".$_POST['limit_aut'];
+    if (strip_tags($_POST['limit_aut'])) {
+        if (strip_tags($_POST['limit_aut'])>0) {
+            $sc = $sc." postsperauthor=".strip_tags($_POST['limit_aut']);
         }
     }
     
-    if ($_POST['limit_tit']) {
-        if ($_POST['limit_tit']>0) {
-            $sc = $sc." totalpoststitle=".$_POST['limit_tit'];
+    if (strip_tags($_POST['limit_tit'])) {
+        if (strip_tags($_POST['limit_tit'])>0) {
+            $sc = $sc." totalpoststitle=".strip_tags($_POST['limit_tit']);
         }
     }
     
     /** Post order  **/
-    if ($_POST['reverse_date']) {
+    if(array_key_exists( 'reverse_date' , $_POST )) {
         $sc = $sc." reverse-date=1";
     }
 
-	if($_POST['postdate']){
+    if(array_key_exists( 'postdate' , $_POST )) {
 		$sc = $sc." postdate=1";
 	}
 	
     /** Excluded Categories **/
     $cat_array = array();
-    $cat=$_POST['cat'];
-    if ($cat) {
-       foreach ($cat as $key => $val) {
+    if(array_key_exists( 'cat' , $_POST )) {
+        $cat=$_POST['cat'];
+            foreach ($cat as $key => $val) {
             array_push($cat_array,$val);
         }
         $cat_string = implode(",", $cat_array);
