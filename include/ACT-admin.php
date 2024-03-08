@@ -21,6 +21,7 @@ function ACT_shortcode_helper()
                 <div id="ACT_topbar">&nbsp;</div>
 
         <form id="ACT_form" class="appnitro"  method="post" action="">
+        <?php wp_nonce_field( 'ACT_form_shortcode', 'ACT_nonce' ); ?>
                     <div class="form_description">
             <div class="ACT_h2">List All Posts by Author, nested Categories and Titles</div>
             <p><?php esc_html_e('Automatic shortcode generator', 'list-all-posts-by-authors-nested-categories-and-titles');?></p>
@@ -157,7 +158,12 @@ function ACT_get_child_cats($cat, $k, $level)
 
 function ACT_processform()
 {
-    
+    if ( isset( $_POST['ACT_nonce'] ) && wp_verify_nonce( $_POST['ACT_nonce'], 'ACT_form_shortcode' ) ) {
+        // Nonce is valid, process the form data
+       } else {
+        // Nonce is not valid, handle the error
+        die("Not authorized");
+       }
     $sc = "[ACT-list";
     
     /* Show List */
