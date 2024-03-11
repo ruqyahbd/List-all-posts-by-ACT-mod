@@ -9,14 +9,17 @@
 * Frontend
 ******************************************************************/
 
-
+$firtsrun = 0;
 
 function ACT_hierarchy_indexes($atts)
 {
+    global $firstrun;
 
     if (!isset($_POST['order'])) {
+        $firstrun = 1;
         $_POST['order']="category";
     }
+
 
     if ($atts['singleuser']) {
         $atts['admin'] = "1";
@@ -28,6 +31,7 @@ function ACT_hierarchy_indexes($atts)
 ?>
 
 <form name="form1" method="post" >
+     <?php wp_nonce_field( 'ACT_form_displayer', 'ACT_nonce_display' ); ?>
         <div align="center" class="styled-select"><?php esc_html_e("Group by:", 'list-all-posts-by-authors-nested-categories-and-titles') ?> 
           <select name="order"  id="order"  onChange=" ;this.form.submit();">
             <?php if (!($atts['singleuser']) and strpos($atts['show'], "Author") !== false) : ?>
@@ -51,6 +55,14 @@ function ACT_hierarchy_indexes($atts)
 <?php
     endif;
     
+    if (!$firstrun ){
+        if ( ! isset( $_POST['ACT_nonce_display'] )  || ! wp_verify_nonce( $_POST['ACT_nonce_display'], 'ACT_form_displayer' )) {
+                // Nonce is not valid, handle the error
+                die("Not authorized");
+        }
+               $firstrun = 0;
+    }
+
     if (count(explode(",", $atts['show'])) == 1) :
         $_POST['order'] = strtolower($atts['show']);
     endif;
@@ -81,7 +93,7 @@ function ACT_bycategory($atts)
         endif;
     
         if (!$cat->parent) {
-             echo "<h4><a href='".htmlspecialchars(get_category_link($cat))."'>".wptexturize($cat->name)."</a></h4><ul>";
+             echo "<h4><a href='".esc_html(get_category_link($cat))."'>".esc_html($cat->name)."</a></h4><ul>";
             ACT_traverse_cat_tree( $cat->term_id, $atts);
         }
     endforeach;
@@ -116,9 +128,9 @@ function ACT_traverse_cat_tree($cat, $atts)
             }
             echo '<li class="subpost">';
            $postdate = date_i18n( get_option( 'date_format' ), strtotime($post->post_date)).' - ';
-    echo ($atts['postdate'] ? htmlspecialchars($postdate) : ''). '<a href="' . get_permalink( $post->ID ) . '">' . wptexturize($post->post_title) . '</a>';
+    echo ($atts['postdate'] ? esc_html($postdate) : ''). '<a href="' . esc_html(get_permalink( $post->ID) ) . '">' . esc_html($post->post_title) . '</a>';
             if (!($atts['singleuser'])) :
-                echo "<span class='righttext'>[".htmlspecialchars(get_the_author_meta( 'first_name', $post->post_author ))." ".htmlspecialchars(get_the_author_meta( 'last_name', $post->post_author ))."]</span>";
+                echo "<span class='righttext'>[".esc_html(get_the_author_meta( 'first_name', $post->post_author ))." ".esc_html(get_the_author_meta( 'last_name', $post->post_author ))."]</span>";
             endif;
     
             echo '</li>';
@@ -137,7 +149,7 @@ function ACT_traverse_cat_tree($cat, $atts)
             if (strpos($atts['exclude'], $cat->slug)!== false) :
                 continue;
             endif;
-               echo "<ul><li class='subcat'><a href='".htmlspecialchars(get_category_link($cat))."'>".wptexturize($cat->name)."</a></li>";
+               echo "<ul><li class='subcat'><a href='".esc_html(get_category_link($cat))."'>".esc_html($cat->name)."</a></li>";
               ACT_traverse_cat_tree( $cat->term_id, $atts);
         endforeach;
     endif;
@@ -182,17 +194,17 @@ function ACT_bytitle($atts)
             }
             echo '<li>';
             $postdate = date_i18n( get_option( 'date_format' ), strtotime($article->post_date)).' - ';
-            echo ($atts['postdate'] ? htmlspecialchars($postdate) : '').'<a href="' . htmlspecialchars(get_permalink( $article->ID )) . '">' . wptexturize($article->post_title) . '</a>';
+            echo ($atts['postdate'] ? esc_html($postdate) : '').'<a href="' . esc_html(get_permalink( $article->ID )) . '">' . esc_html($article->post_title) . '</a>';
             if (!($atts['singleuser'])) :
-                echo "<span class='righttext'>[".htmlspecialchars(get_the_author_meta( 'first_name', $article->post_author ))." ".htmlspecialchars(get_the_author_meta( 'last_name', $article->post_author ))."]</span>";
+                echo "<span class='righttext'>[".esc_html(get_the_author_meta( 'first_name', $article->post_author ))." ".esc_html(get_the_author_meta( 'last_name', $article->post_author ))."]</span>";
             else :
                 $categories = get_the_category( $article->ID );
                 $list_cats =null;
                 foreach ($categories as $cat) :
-                    $list_cats .= wptexturize($cat->name).", ";
+                    $list_cats .= esc_html($cat->name).", ";
                 endforeach;
                 $list_cats = substr($list_cats, 0, -2);
-                echo "<span class='righttext'>[".htmlspecialchars($list_cats)."]</span>";
+                echo "<span class='righttext'>[".esc_html($list_cats)."]</span>";
             endif;
             echo '</li>';
             $i++;
@@ -245,7 +257,7 @@ function ACT_byauthor($atts)
         if (!$author_posts) :
             continue;
         endif;
-            echo '<h4><a href="'.htmlspecialchars(get_author_posts_url($user->ID)).'">'.htmlspecialchars($user->display_name).'</a></h4>';
+            echo '<h4><a href="'.esc_html(get_author_posts_url($user->ID)).'">'.esc_html($user->display_name).'</a></h4>';
     
         if ($author_posts) {
             echo '<ul>';
@@ -253,14 +265,14 @@ function ACT_byauthor($atts)
             foreach ($author_posts as $author_post) {
                 $postdate = date_i18n( get_option( 'date_format' ), strtotime($author_post->post_date)).' - ';  
                 echo '<li>';
-                echo ($atts['postdate'] ? htmlspecialchars($postdate) : ''). '<a href="' . htmlspecialchars(get_permalink( $author_post->ID )) . '">'.htmlspecialchars($author_post->post_title).'</a>';
+                echo ($atts['postdate'] ? esc_html($postdate) : ''). '<a href="' . esc_html(get_permalink( $author_post->ID )) . '">'.esc_html($author_post->post_title).'</a>';
                 $categories = get_the_category( $author_post->ID );
                 $list_cats =null;
                 foreach ($categories as $cat) :
-                    $list_cats .= wptexturize($cat->name).", ";
+                    $list_cats .= esc_html($cat->name).", ";
                 endforeach;
                 $list_cats = substr($list_cats, 0, -2);
-                echo "<span class='righttext'>[".htmlspecialchars($list_cats)."]</span>";
+                echo "<span class='righttext'>[".esc_html($list_cats)."]</span>";
                 echo '</li>';
                 $i++;
                 if ($atts['postsperauthor'] > -1) :

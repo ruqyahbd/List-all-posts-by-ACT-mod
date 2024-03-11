@@ -132,12 +132,12 @@ function ACT_list_categories()
     foreach ($categories as $category) {
         if (!$category->parent) {
             $i++;
-            echo ('<input id=cat[] name=cat[] class="element checkbox" type = "checkbox" value="'.htmlspecialchars($category->slug).'" />');
-            echo ('<label class="choice" for=cat[]>'.htmlspecialchars($category->name).'</label>');
+            echo ('<input id=cat[] name=cat[] class="element checkbox" type = "checkbox" value="'.esc_html($category->slug).'" />');
+            echo ('<label class="choice" for=cat[]>'.esc_html($category->name).'</label>');
             $i = ACT_get_child_cats( $category->term_id, $i, " ");
         }
     }
-    echo ('<input type="hidden" name="total_cats" value="'.htmlspecialchars($i).'" />');
+    echo ('<input type="hidden" name="total_cats" value="'.esc_html($i).'" />');
 }
 
 function ACT_get_child_cats($cat, $k, $level)
@@ -147,8 +147,8 @@ function ACT_get_child_cats($cat, $k, $level)
         $level .= "&#8212;";
         foreach ($next as $category) :
             $k++;
-            echo ('<input id=cat[] name=cat[] class="element checkbox" type = "checkbox" value="'.htmlspecialchars($category->slug).'" />');
-            echo ('<label class="choice" for=cat[]> '.$level.' '.htmlspecialchars($category->name).'</label>');
+            echo ('<input id=cat[] name=cat[] class="element checkbox" type = "checkbox" value="'.esc_html($category->slug).'" />');
+            echo ('<label class="choice" for=cat[]> '.esc_html($level).' '.esc_html($category->name).'</label>');
 
             $k = ACT_get_child_cats( $category->term_id, $k, $level);
         endforeach;
@@ -211,19 +211,19 @@ function ACT_processform()
         /** Limit output **/
     if (filter_var($_POST['limit_cat'], FILTER_VALIDATE_INT) == true) {
         if ($_POST['limit_cat']>0) {
-            $sc = $sc." postspercategory=".strip_tags($_POST['limit_cat']);
+            $sc = $sc." postspercategory=".wp_strip_all_tags($_POST['limit_cat']);
         }
     }
   
     if (filter_var($_POST['limit_aut'], FILTER_VALIDATE_INT) == true) {
             if ($_POST['limit_aut']>0) {
-                $sc = $sc." postsperauthor=".strip_tags($_POST['limit_aut']);
+                $sc = $sc." postsperauthor=".wp_strip_all_tags($_POST['limit_aut']);
             }
     }
     
     if (filter_var($_POST['limit_tit'], FILTER_VALIDATE_INT) == true) {
             if ($_POST['limit_tit']>0) {
-                $sc = $sc." totalpoststitle=".strip_tags($_POST['limit_tit']);
+                $sc = $sc." totalpoststitle=".wp_strip_all_tags($_POST['limit_tit']);
             }
     }
     
@@ -261,7 +261,7 @@ function ACT_processform()
     $sc = $sc."]";
     esc_html_e('This is your shortcode:', 'list-all-posts-by-authors-nested-categories-and-titles');
     echo ("<br /><br />");
-    echo "<code style='background-color:#eee'>".htmlspecialchars($sc)."</code><br /><br />";
+    echo "<code style='background-color:#eee'>".esc_html($sc)."</code><br /><br />";
     esc_html_e('Copy & Paste it into your page', 'list-all-posts-by-authors-nested-categories-and-titles');
     echo ("<br />");
     
