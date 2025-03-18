@@ -1,4 +1,4 @@
-Newly added css codes, put these css on frontend, where you will use ACT shortcode.
+Newly added css codes, put these on head of frontend, where you will use ACT shortcode.
 
 ```
 table {
