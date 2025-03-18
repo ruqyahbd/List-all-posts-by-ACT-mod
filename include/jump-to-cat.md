@@ -1,7 +1,7 @@
 jump to a cat in list, put this on page where you use ACT shortcode 
 
-``<p style="text-align: center;"><strong>JUMP TO LIST</strong></p>
-
+```
+<p style="text-align: center;"><strong>JUMP TO LIST</strong></p>
 <table>
 <tbody>
 <tr>
@@ -30,4 +30,4 @@ jump to a cat in list, put this on page where you use ACT shortcode
 </tr>
 </tbody>
 </table>
-``
+```
