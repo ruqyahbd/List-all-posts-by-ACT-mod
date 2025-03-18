@@ -1,5 +1,6 @@
-/** newly added css codes, put these css on frontend, where you will use ACT shortcode. **/
+Newly added css codes, put these css on frontend, where you will use ACT shortcode.
 
+```
 table {
     background-color: #fdf6e3;
     border-color: #93a1a1;
@@ -49,3 +50,4 @@ table tbody tr {
         flex: 1 1 100%;
     }
 }
+```
